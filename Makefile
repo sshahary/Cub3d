@@ -2,23 +2,26 @@ NAME		= cub3d
 
 CFLAGS		= -Wall -Wextra -Werror
 SRCS		= main.c
-# BONUS =
 OBJS		= ${SRCS:.c=.o}
+
 MLX_URL		= https://github.com/codam-coding-college/MLX42.git
 MLX_PATH	= ./MLX42/build
 MLX			= $(MLX_PATH)/libmlx42.a
 LIBMLX		= ./MLX42
 MLX_FLAGS	= -ldl -lglfw -pthread -lm
-# GNL_PATH	= ./gnl
-# GNL			= $(GNL_PATH)/get_next_line.a
-LIB_PATH	= ./lib/ft_print
-LIB			= $(LIB_PATH)/libftprintf.a
-HEADERS		= -I ./include -I $(LIBMLX)/include $(MLX_FLAGS)
 
-all: $(MLX) $(LIB) $(NAME)
+LIB_PATH	= ./lib
+LIB			= $(LIB_PATH)/full_libft.a
+HEADERS		= -I ./include -I $(LIBMLX)/include
+
+all: $(MLX) $(LIB) $(NAME) clean
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
+	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)\n"
+
+$(NAME): $(OBJS)
+	@$(CC) $(OBJS) $(HEADERS) $(LIB) $(MLX_FLAGS) -o $(NAME)
+	@printf "Compiled successfully\nRun with:   ./cub3d \"map_file.cub\"\n"
 
 $(MLX):
 	git clone $(MLX_URL)
@@ -27,18 +30,15 @@ $(MLX):
 $(LIB):
 	@make -sC $(LIB_PATH)
 
-$(NAME): $(OBJS)
-	@$(CC) $(OBJS) $(LIBS) $(HEADERS) $(LIB) -o $(NAME)
-
 clean:
 	@rm -rf $(OBJS)
-	@rm -rf $(LIBMLX)
-	@make -C $(LIB_PATH) clean
+	@make -sC $(LIB_PATH) clean
 
 fclean: clean
 	@rm -rf $(NAME)
-	@make -C $(LIB_PATH) fclean
+	@rm -rf $(LIBMLX)
+	@make -sC $(LIB_PATH) fclean
 
 re: clean all
 
-.PHONY: all, clean, fclean, re, libmlx
+.PHONY: all, clean, fclean, re
