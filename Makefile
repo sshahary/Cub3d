@@ -1,4 +1,4 @@
-NAME		= cub3d
+NAME		= cub3D
 
 CFLAGS		= -Wall -Wextra -Werror
 SRCS		= main.c
@@ -21,7 +21,7 @@ all: $(MLX) $(LIB) $(NAME) clean
 
 $(NAME): $(OBJS)
 	@$(CC) $(OBJS) $(HEADERS) $(LIB) $(MLX_FLAGS) -o $(NAME)
-	@printf "Compiled successfully\nRun with:   ./cub3d \"map_file.cub\"\n"
+	@printf "Compiled successfully\nRun with:   ./cub3D \"map_file.cub\"\n"
 
 $(MLX):
 	git clone $(MLX_URL)
