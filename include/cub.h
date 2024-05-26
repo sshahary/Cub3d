@@ -6,7 +6,7 @@
 /*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:54:12 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/25 17:25:47 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/05/26 12:55:34 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,46 @@
 
 #define WIDTH 5120
 #define HEIGHT 2880
+#define SCREEN_WIDTH 1200
+#define SCREEN_HEIGHT 980
 
+
+typedef struct s_player
+{
+	int		x;
+	int		y;
+	double	angle;
+	float	fovradius;
+	int		rotate;
+	int		leftright;
+	int		updown;
+}	t_player;
+
+typedef struct s_ray
+{
+	double	rayangle;
+	double	dist;
+	int		wallflag;
+}	t_ray;
+
+typedef struct s_cub
+{
+	char	**maps;
+	int		x;
+	int		y;
+	int		wid;
+	int		height;
+}	t_cub;
+
+
+typedef struct s_game
+{
+	mlx_t			*mlx;
+	mlx_image_t		*img;
+	mlx_texture_t	*texture;
+	t_cub			*cub;
+	t_ray			*ray;
+	t_player		*player;
+}	t_game;
 
 #endif
