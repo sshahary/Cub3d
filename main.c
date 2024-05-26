@@ -6,41 +6,25 @@
 /*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:53:23 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/25 23:50:33 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/05/26 22:46:30 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/cub.h"
 
 
-static void error(void) {
-	printf("%s", mlx_strerror(mlx_errno));
-	exit(EXIT_FAILURE);
-}
+// static void error(void) {
+// 	printf("%s", mlx_strerror(mlx_errno));
+// 	exit(EXIT_FAILURE);
+// }
 
-void	init(t_game *game_data)
+void	init(t_game game_data)
 {
-	game_data->mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3d", true);
-	if (!game_data->mlx) {
-		fprintf(stderr, "MLX42 initialization failed\n");
-		exit(EXIT_FAILURE);
-	}
-
-	game_data->img = mlx_new_image(game_data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	if (!game_data->img) {
-		fprintf(stderr, "Image creation failed\n");
-		mlx_terminate(game_data->mlx);
-		exit(EXIT_FAILURE);
-	}
-	game_data->texture = mlx_load_png("texture/brick.png");
-	if (!game_data->texture)
-		error();
-	mlx_image_t *temp_img = mlx_texture_to_image(game_data->mlx, game_data->texture);
-	if (!temp_img)
-		error();
-	if (mlx_image_to_window(game_data->mlx, temp_img, 0, 0) < 0)
-		error();
-	mlx_delete_image(game_data->mlx, temp_img);
+	game_data.player->x = game_data.cub->x * TILE + TILE / 2;
+	game_data.player->y = game_data.cub->y * TILE + TILE / 2;
+	game_data.player->fovradian = FOV * M_PI / 180;
+	game_data.player->angle = M_PI;
+	
 }
 
 void clear_image(mlx_image_t *img, uint32_t color)
@@ -53,7 +37,27 @@ void clear_image(mlx_image_t *img, uint32_t color)
 		}
 	}
 }
-
+t_cub *init_testmap()
+{
+	t_cub	*cub = ft_calloc(1, sizeof(t_cub));
+	cub->maps = ft_calloc(10, sizeof(char *));
+	cub->maps[0] = strdup("1111111111111111111111111"); //fill the map
+	cub->maps[1] = strdup("1000000000000000000100001");
+	cub->maps[2] = strdup("1001000000000P00000000001");
+	cub->maps[3] = strdup("1001000000000000001000001");
+	cub->maps[4] = strdup("1001000000000000001000001");
+	cub->maps[5] = strdup("1001000000100000001000001");
+	cub->maps[6] = strdup("1001000000000000001000001");
+	cub->maps[7] = strdup("1001000000001000001000001");
+	cub->maps[8] = strdup("1111111111111111111111111");
+	cub->maps[9] = NULL;
+	cub->y = 3;
+	cub->x = 14;
+	cub->wid = 25;
+	cub->height = 9;
+	return (cub);
+	
+}
 
 void render_floor_ceiling(t_game *game_data)
 {
@@ -89,17 +93,23 @@ void	loop_hook(void* param)
 int main()
 {
 	t_game game_data;
+	t_cub	*cub;
 
-	init(&game_data);
-
+	cub = init_testmap();
+	game_data.cub = cub;
+	game_data.player = ft_calloc(1, sizeof(t_player));
+	game_data.ray = ft_calloc(1, sizeof(t_ray));
+	game_data.mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3d", 0);
+	init(game_data);
+	mlx_loop_hook(game_data.mlx, &loop_hook, &game_data);
+	// mlx_key_data(game_data.mlx, &control, &game_data);
 	// Main loop with rendering
-	mlx_loop_hook(game_data.mlx, loop_hook, &game_data);
 	mlx_loop(game_data.mlx);
 
 	// Cleanup
-	mlx_delete_image(game_data.mlx, game_data.img);
-	mlx_delete_texture(game_data.texture);
-	mlx_terminate(game_data.mlx);
+	// mlx_delete_image(game_data.mlx, game_data.img);
+	// mlx_delete_texture(game_data.texture);
+	// mlx_terminate(game_data.mlx);
 
 	return EXIT_SUCCESS;
 }

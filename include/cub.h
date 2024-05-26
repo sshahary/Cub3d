@@ -6,7 +6,7 @@
 /*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:54:12 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/26 12:55:34 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/05/26 15:38:49 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 #define HEIGHT 2880
 #define SCREEN_WIDTH 1200
 #define SCREEN_HEIGHT 980
+#define TILE 30
+#define FOV 60
 
 
 typedef struct s_player
@@ -32,7 +34,7 @@ typedef struct s_player
 	int		x;
 	int		y;
 	double	angle;
-	float	fovradius;
+	float	fovradian;
 	int		rotate;
 	int		leftright;
 	int		updown;
@@ -45,6 +47,7 @@ typedef struct s_ray
 	int		wallflag;
 }	t_ray;
 
+//data structure for 2dmap
 typedef struct s_cub
 {
 	char	**maps;
@@ -55,6 +58,7 @@ typedef struct s_cub
 }	t_cub;
 
 
+// main structure
 typedef struct s_game
 {
 	mlx_t			*mlx;
