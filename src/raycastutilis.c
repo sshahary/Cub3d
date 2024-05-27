@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycastutilis.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 00:06:56 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/27 04:31:19 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:30:50 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ int	wall_hit(float x, float y, t_game *data)
 
 	if (x < 0 || y < 0)
 		return (0);
-	xmap = floor (x / TILE); // get the x position in the map
-	ymap = floor (y / TILE); // get the y position in the map
-	if ((ymap >= data->cub->height || xmap >= data->cub->wid))
+	xmap = floor(x / TILE); // get the x position in the map
+	ymap = floor(y / TILE); // get the y position in the map
+	if ((ymap >= data->cub->map_length || xmap >= data->cub->map_width))
 		return (0);
-	if (data->cub->maps[ymap] && xmap <= (int)strlen(data->cub->maps[ymap]))
-		if (data->cub->maps[ymap][xmap] == '1')
+	if (data->cub->map[ymap] && xmap <= (int)ft_strlen(data->cub->map[ymap]))
+		if (data->cub->map[ymap][xmap] == '1')
 			return (0);
 	return (1);
 }

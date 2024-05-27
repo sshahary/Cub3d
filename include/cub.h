@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:54:12 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/27 12:16:36 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/05/27 12:28:01 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "../lib/ft_printf/ft_printf.h"
 # include "../lib/gnl/get_next_line_bonus.h"
 # include "../MLX42/include/MLX42/MLX42.h"
+# include "cubdata.h"
 
 #define WIDTH 5120
 #define HEIGHT 2880
@@ -28,7 +29,6 @@
 #define SCREEN_HEIGHT 980
 #define TILE 30
 #define FOV 60
-
 
 typedef struct s_player
 {
@@ -49,15 +49,15 @@ typedef struct s_ray
 }	t_ray;
 
 //data structure for 2dmap
-typedef struct s_cub
-{
-	char	**maps;
-	int		x;
-	int		y;
-	int		wid;
-	int		height;
-}	t_cub;
-
+// typedef struct s_cub2
+// {
+// 	char	**maps;
+// 	int		x;
+// 	int		y;
+// 	int		wid;
+// 	int		height;
+// }	t_cub2;
+// please rename -anna
 
 // main structure
 typedef struct s_game
@@ -69,7 +69,6 @@ typedef struct s_game
 	t_ray			*ray;
 	t_player		*player;
 }	t_game;
-
 
 //raycasting
 
@@ -83,12 +82,11 @@ void	ray_cast(t_game *data);
 
 //rendering
 
-void pixel_put(t_game *data, int x, int y, int color);
-void draw_floor_ceiling(t_game *data, int ray, int t_pix, int b_pix);
-int get_color(t_game *data, int flag);
-void draw_wall(t_game *data, int ray, int t_pix, int b_pix);
+void	pixel_put(t_game *data, int x, int y, int color);
+void	draw_floor_ceiling(t_game *data, int ray, int t_pix, int b_pix);
+int		get_color(t_game *data, int flag);
+void	draw_wall(t_game *data, int ray, int t_pix, int b_pix);
 
-# include "cubdata.h"
 
 // parse
 
