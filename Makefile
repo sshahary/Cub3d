@@ -1,14 +1,17 @@
 NAME		= cub3D
 
 CFLAGS		= -Wall -Wextra -Werror
-SRCS		= main.c src/parse/map.c src/parse/utils.c
+
+SRCS		= main.c src/parse/map.c src/parse/utils.c \
+			src/raycasting.c src/raycastutilis.c src/rendering.c
+SRCS		= main.c 
 OBJS		= ${SRCS:.c=.o}
 
 MLX_URL		= https://github.com/codam-coding-college/MLX42.git
 MLX_PATH	= ./MLX42/build
 MLX			= $(MLX_PATH)/libmlx42.a
 LIBMLX		= ./MLX42
-MLX_FLAGS	= -ldl -lglfw -pthread -lm
+MLX_FLAGS	= -L$(MLX_PATH) -lmlx42 -ldl -lglfw -framework Cocoa -framework OpenGL -framework IOKit -pthread -lm
 
 LIB_PATH	= ./lib
 LIB			= $(LIB_PATH)/full_libft.a
@@ -24,7 +27,9 @@ $(NAME): $(OBJS)
 	@printf "Compiled successfully\nRun with:   ./cub3D \"map_file.cub\"\n"
 
 $(MLX):
-	git clone $(MLX_URL)
+	@if [ ! -d "$(LIBMLX)" ]; then \
+		git clone $(MLX_URL); \
+	fi
 	cd MLX42 && cmake -B build && cmake --build build
 
 $(LIB):
