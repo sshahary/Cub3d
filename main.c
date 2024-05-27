@@ -6,7 +6,7 @@
 /*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:53:23 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/26 22:46:30 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/05/27 04:27:45 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,17 +77,13 @@ void render_floor_ceiling(t_game *game_data)
 
 void	loop_hook(void* param)
 {
-	t_game *game_data = (t_game*)param;
-
-	clear_image(game_data->img, 0x00000000); // Clear the image with transparency
-	render_floor_ceiling(game_data);
-
-	// Update the image to the window
-	mlx_image_to_window(game_data->mlx, game_data->img, 0, 0);
-
-	if (mlx_is_key_down(game_data->mlx, MLX_KEY_ESCAPE)) {
-		mlx_close_window(game_data->mlx);
-	}
+	t_game *data;
+	data = param;
+	mlx_delete_image(data->mlx, data->img);
+	data->img = mlx_new_image(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+	// hook(data, 0, 0);
+	ray_cast(data);
+	mlx_image_to_window(data->mlx, data->img, 0, 0);
 }
 
 int main()

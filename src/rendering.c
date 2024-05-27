@@ -6,13 +6,14 @@
 /*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 19:32:17 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/25 23:40:42 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/05/27 04:37:20 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub.h"
 
-void	render(t_cub *cub)
-{
+// void	render(t_cub *cub)
+// {
 	
-}
+// }
+

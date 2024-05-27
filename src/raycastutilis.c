@@ -6,7 +6,7 @@
 /*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 00:06:56 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/27 00:07:35 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/05/27 04:31:19 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_circle(float angle, char c)
 		if (angle > 0 && angle < M_PI)
 		return (1);
 	}
-	if (c = 'y')
+	if (c == 'y')
 	{
 		if (angle > (M_PI / 2) && angle < (3 * M_PI) / 2)
 		return (1);

@@ -1,7 +1,7 @@
 NAME		= cub3d
 
 CFLAGS		= -Wall -Wextra -Werror
-SRCS		= main.c
+SRCS		= main.c src/raycasting.c src/raycastutilis.c src/rendering.c
 OBJS		= ${SRCS:.c=.o}
 
 MLX_URL		= https://github.com/codam-coding-college/MLX42.git

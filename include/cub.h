@@ -6,7 +6,7 @@
 /*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:54:12 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/26 15:38:49 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/05/27 04:19:02 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,24 @@ typedef struct s_game
 	t_ray			*ray;
 	t_player		*player;
 }	t_game;
+
+
+//raycasting
+
+int	check_circle(float angle, char c);
+int	check_intersect(float angle, float *inter, float *step, int horiflag);
+int	wall_hit(float x, float y, t_game *data);
+float	nor_angle(float angle);
+float	find_h_intersect(t_game *data, float angle);
+float	find_v_intersect(t_game *data, float angle);
+void	ray_cast(t_game *data);
+
+//rendering
+
+void pixel_put(t_game *data, int x, int y, int color);
+void draw_floor_ceiling(t_game *data, int ray, int t_pix, int b_pix);
+int get_color(t_game *data, int flag);
+void draw_wall(t_game *data, int ray, int t_pix, int b_pix);
+
 
 #endif
