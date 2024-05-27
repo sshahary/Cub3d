@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cubdata.h                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 13:29:32 by asemsey           #+#    #+#             */
-/*   Updated: 2024/05/27 11:06:40 by asemsey          ###   ########.fr       */
+/*   Created: 2024/05/27 11:55:15 by asemsey           #+#    #+#             */
+/*   Updated: 2024/05/27 12:07:59 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBDATA_H
-# define CUBDATA_H
+#include "../../include/cub.h"
 
-# include "cub.h"
-
-typedef struct s_rgb
+void	print_map(char **map)
 {
-	unsigned char	r;
-	unsigned char	g;
-	unsigned char	b;
-}	t_rgb;
+	int	i;
 
-typedef struct s_cub
-{
-	char	**map;
-	char	*no_png;
-	char	*so_png;
-	char	*ea_png;
-	char	*we_png;
-	t_rgb	c_rgb;
-	t_rgb	f_rgb;
-	int		map_length;
-	int		map_width;
-}	t_cub;
-
-#endif
+	i = 0;
+	while (map && map[i])
+	{
+		printf("%d\t%s", i, map[i]);
+		i++;
+	}
+	printf("\n");
+}

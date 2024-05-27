@@ -1,7 +1,7 @@
 NAME		= cub3D
 
 CFLAGS		= -Wall -Wextra -Werror
-SRCS		= main.c
+SRCS		= main.c src/parse/map.c src/parse/utils.c
 OBJS		= ${SRCS:.c=.o}
 
 MLX_URL		= https://github.com/codam-coding-college/MLX42.git
