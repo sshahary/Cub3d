@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:53:23 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/27 12:33:03 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/05/28 20:25:14 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void clear_image(mlx_image_t *img, uint32_t color)
 		}
 	}
 }
-t_cub *init_testmap()
+t_cub	*init_testmap()
 {
 	t_cub	*cub = ft_calloc(1, sizeof(t_cub));
 	cub->map = ft_calloc(10, sizeof(char *));
@@ -59,21 +59,21 @@ t_cub *init_testmap()
 	
 }
 
-void render_floor_ceiling(t_game *game_data)
-{
-	uint32_t ceiling_color = 0xFF87CEEB; // Sky blue color (with alpha)
-	uint32_t floor_color = 0xFF8B4513;   // Brown color (with alpha)
+// void render_floor_ceiling(t_game *game_data)
+// {
+// 	uint32_t ceiling_color = 0xFF87CEEB; // Sky blue color (with alpha)
+// 	uint32_t floor_color = 0xFF8B4513;   // Brown color (with alpha)
 
-	for (uint32_t y = 0; y < game_data->img->height; y++) {
-		for (uint32_t x = 0; x < game_data->img->width; x++) {
-			if (y < game_data->img->height / 2) {
-				((uint32_t*)game_data->img->pixels)[y * game_data->img->width + x] = ceiling_color;
-			} else {
-				((uint32_t*)game_data->img->pixels)[y * game_data->img->width + x] = floor_color;
-			}
-		}
-	}
-}
+// 	for (uint32_t y = 0; y < game_data->img->height; y++) {
+// 		for (uint32_t x = 0; x < game_data->img->width; x++) {
+// 			if (y < game_data->img->height / 2) {
+// 				((uint32_t*)game_data->img->pixels)[y * game_data->img->width + x] = ceiling_color;
+// 			} else {
+// 				((uint32_t*)game_data->img->pixels)[y * game_data->img->width + x] = floor_color;
+// 			}
+// 		}
+// 	}
+// }
 
 void	loop_hook(void* param)
 {

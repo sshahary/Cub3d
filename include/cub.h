@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:54:12 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/27 12:28:01 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/05/28 20:24:45 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	pixel_put(t_game *data, int x, int y, int color);
 void	draw_floor_ceiling(t_game *data, int ray, int t_pix, int b_pix);
 int		get_color(t_game *data, int flag);
 void	draw_wall(t_game *data, int ray, int t_pix, int b_pix);
-
+void	render(t_game *data, int ray);
 
 // parse
 
