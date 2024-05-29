@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:54:12 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/29 11:41:48 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/05/29 19:16:25 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_game
 	mlx_t			*mlx;
 	mlx_image_t		*img;
 	mlx_texture_t	*texture;
+	t_texture		textures;
 	t_cub			*cub;
 	t_ray			*ray;
 	t_player		*player;

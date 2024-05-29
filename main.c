@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:53:23 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/29 10:42:48 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/05/29 19:43:43 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,20 @@ void	init(t_game game_data)
 // 		}
 // 	}
 // }
+
+void load_textures(t_game *data)
+{
+	data->textures.north = mlx_load_png("texture/brick1.png");
+	data->textures.south = mlx_load_png("texture/brick1.png");
+	data->textures.east = mlx_load_png("texture/brick1.png");
+	data->textures.west = mlx_load_png("texture/brick1.png");
+
+	if (!data->textures.north || !data->textures.south ||
+		!data->textures.east || !data->textures.west) {
+		ft_error("Failed to load textures");
+	}
+}
+
 
 t_cub	*init_testmap()
 {
@@ -98,15 +112,19 @@ int main(int argc, char **argv)
 	game_data.ray = ft_calloc(1, sizeof(t_ray));
 	game_data.mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3d", 0);
 	init(game_data);
+	load_textures(&game_data);
 	mlx_loop_hook(game_data.mlx, &loop_hook, &game_data);
 	mlx_key_hook(game_data.mlx, &key, &game_data);
 	// Main loop with rendering
 	mlx_loop(game_data.mlx);
 
 	// Cleanup
-	// mlx_delete_image(game_data.mlx, game_data.img);
-	// mlx_delete_texture(game_data.texture);
-	// mlx_terminate(game_data.mlx);
+  	mlx_delete_image(game_data.mlx, game_data.img);
+	mlx_delete_texture(game_data.textures.north);
+	mlx_delete_texture(game_data.textures.south);
+	mlx_delete_texture(game_data.textures.east);
+	mlx_delete_texture(game_data.textures.west);
+	mlx_terminate(game_data.mlx);
 
 	return EXIT_SUCCESS;
 }

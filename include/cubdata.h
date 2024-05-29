@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubdata.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 13:29:32 by asemsey           #+#    #+#             */
-/*   Updated: 2024/05/29 11:08:11 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/05/29 19:15:15 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,14 @@ typedef struct s_cub
 	int		x;
 	int		y;
 }	t_cub;
+
+typedef struct s_texture
+{
+	mlx_texture_t	*north;
+	mlx_texture_t	*south;
+	mlx_texture_t	*east;
+	mlx_texture_t	*west;
+}	t_texture;
+
 
 #endif

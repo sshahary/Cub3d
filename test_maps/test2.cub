@@ -1,7 +1,7 @@
-NO ./texture/brick.png
-SO ./texture/brick.png
-WE ./texture/brick.png
-EA ./texture/brick.png
+NO ./texture/brick1.png
+SO ./texture/brick2.png
+WE ./texture/brick3.png
+EA ./texture/brick4.png
 
 F 255,100,0
 C 0,255,0
