@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 13:31:27 by asemsey           #+#    #+#             */
-/*   Updated: 2024/05/29 10:23:34 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/05/29 17:06:15 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,3 +78,4 @@ void	get_identifier(char *line, t_cub *cub)
 	else if (!ft_strncmp(line, "C ", 2))
 		cub->c_rgb = get_rgb(filename);
 }
+

@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:54:12 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/29 11:41:48 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/05/29 17:29:42 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,9 @@ int		map_valid(t_cub *cub);
 void	print_map(char **map);
 void	ft_free(t_game *data);
 void	ft_error(char *str);
+
+int		ft_arrlen(char **arr);
+void	ft_arrfree(char **arr);
+char	**ft_arrdup(char **arr);
 
 #endif

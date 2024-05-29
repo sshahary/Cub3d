@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 11:55:15 by asemsey           #+#    #+#             */
-/*   Updated: 2024/05/29 10:02:43 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/05/29 17:12:42 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ void	print_map(char **map)
 	i = 0;
 	while (map && map[i])
 	{
-		printf("%d\t%s", i, map[i]);
+		printf("%d\t%s\n", i, map[i]);
 		i++;
 	}
-	printf("\n");
 }

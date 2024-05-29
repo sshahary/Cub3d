@@ -3,7 +3,7 @@ NAME		= cub3D
 CFLAGS		= -Wall -Wextra -Werror
 
 SRCS		= main.c src/parse/map.c src/parse/ft_is.c src/parse/read_file.c src/parse/map_check.c\
-			src/parse/testing.c\
+			src/parse/testing.c src/utils.c\
 			src/raycasting.c src/raycastutilis.c src/rendering.c src/controlling.c src/keyhandling.c
 OBJS		= ${SRCS:.c=.o}
 
