@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 11:55:15 by asemsey           #+#    #+#             */
-/*   Updated: 2024/05/29 10:24:37 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/05/29 10:43:27 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_isspace(char c)
 // "0 for an empty space, 1 for a wall, and N,S,E or W"
 int	is_mapchar(char c)
 {
-	return (c == '0' || c == '1'
+	return (c == '0' || c == '1' || c == 'P'
 		|| c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 

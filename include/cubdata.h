@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 13:29:32 by asemsey           #+#    #+#             */
-/*   Updated: 2024/05/29 10:21:29 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/05/29 11:08:11 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 
 # include "cub.h"
 
-typedef struct s_rgb
+typedef struct s_point
 {
-	unsigned char	r;
-	unsigned char	g;
-	unsigned char	b;
-}	t_rgb;
+	int	x;//left right
+	int	y;//up down
+}	t_point;
 
 typedef struct s_cub
 {

@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:04:14 by asemsey           #+#    #+#             */
-/*   Updated: 2024/05/29 10:29:20 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/05/29 11:47:47 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,10 @@ int	read_mapfile(char *filename, t_cub *cub)
 	if (!cub->map)
 		return (0);
 	line = read_map(cub, line, fd);
-	print_map(cub->map);
 	if (line)
 		return (0);
+	// if (line || !map_valid(cub))
+	// 	return (0);
 	set_mapsize(cub);
 	close(fd);
 	return (1);

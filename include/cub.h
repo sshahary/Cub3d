@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:54:12 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/29 10:27:16 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/05/29 11:41:48 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,11 @@ int		ft_isspace(char c);
 int		is_mapline(char *str);
 int		is_identifier(char *str);
 int		is_rgb(char *str, int iter);
+int		map_valid(t_cub *cub);
 // int		is_mapchar(char c);
 
 void	print_map(char **map);
 void	ft_free(t_game *data);
+void	ft_error(char *str);
 
 #endif

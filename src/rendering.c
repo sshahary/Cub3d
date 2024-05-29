@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 19:32:17 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/28 23:53:17 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:54:24 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,23 @@ void	draw_floor_ceiling(t_game *data, int ray, int tpix, int bpix)
 
 	i = bpix;
 	while (i < SCREEN_HEIGHT)
-		pixel_put(data, ray, i++, 0xC09470FF);
+		pixel_put(data, ray, i++, data->cub->c_rgb);
 	i = 0;
 	while (i < tpix)
-		pixel_put(data, ray, i++, 0x00000000);
+		pixel_put(data, ray, i++, data->cub->f_rgb);// read colors
 }
+
+// void	draw_floor_ceiling(t_game *data, int ray, int tpix, int bpix)
+// {
+// 	int	i;
+
+// 	i = bpix;
+// 	while (i < SCREEN_HEIGHT)
+// 		pixel_put(data, ray, i++, 0xC09470FF);
+// 	i = 0;
+// 	while (i < tpix)
+// 		pixel_put(data, ray, i++, 0x00000000);
+// }
 
 int	get_color(t_game *data, int flag)
 {

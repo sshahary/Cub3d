@@ -6,17 +6,23 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:53:23 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/29 10:32:28 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/05/29 10:42:48 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/cub.h"
 
-
 // static void error(void) {
 // 	printf("%s", mlx_strerror(mlx_errno));
 // 	exit(EXIT_FAILURE);
 // }
+
+void	ft_error(char *str)
+{
+	ft_putendl_fd("Error", 2);
+	ft_putendl_fd(str, 2);
+	exit(EXIT_FAILURE);
+}
 
 void	init(t_game game_data)
 {
@@ -37,6 +43,7 @@ void	init(t_game game_data)
 // 		}
 // 	}
 // }
+
 t_cub	*init_testmap()
 {
 	t_cub	*cub = ft_calloc(1, sizeof(t_cub));
@@ -82,10 +89,7 @@ int main(int argc, char **argv)
 		if (read_mapfile(argv[1], cub))
 			printf("map read :)\n");
 		else
-		{
-			printf("error reading cub file\n");
-			cub = init_testmap();
-		}
+			ft_error("couldn't read map file");
 	}
 	else
 		cub = init_testmap();
