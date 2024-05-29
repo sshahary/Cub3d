@@ -6,7 +6,7 @@
 /*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:53:23 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/28 20:25:14 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/05/29 01:54:28 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ void	init(t_game game_data)
 	
 }
 
-void clear_image(mlx_image_t *img, uint32_t color)
-{
-	for (uint32_t y = 0; y < img->height; y++)
-	{
-		for (uint32_t x = 0; x < img->width; x++)
-		{
-			((uint32_t*)img->pixels)[y * img->width + x] = color;
-		}
-	}
-}
+// void clear_image(mlx_image_t *img, uint32_t color)
+// {
+// 	for (uint32_t y = 0; y < img->height; y++)
+// 	{
+// 		for (uint32_t x = 0; x < img->width; x++)
+// 		{
+// 			((uint32_t*)img->pixels)[y * img->width + x] = color;
+// 		}
+// 	}
+// }
 t_cub	*init_testmap()
 {
 	t_cub	*cub = ft_calloc(1, sizeof(t_cub));
@@ -44,7 +44,7 @@ t_cub	*init_testmap()
 	cub->map[0] = strdup("1111111111111111111111111"); //fill the map
 	cub->map[1] = strdup("1000000000000000000100001");
 	cub->map[2] = strdup("1001000000000P00000000001");
-	cub->map[3] = strdup("1001000000000000001000001");
+	cub->map[3] = strdup("1001000000010000001000001");
 	cub->map[4] = strdup("1001000000000000001000001");
 	cub->map[5] = strdup("1001000000100000001000001");
 	cub->map[6] = strdup("1001000000000000001000001");
@@ -59,21 +59,6 @@ t_cub	*init_testmap()
 	
 }
 
-// void render_floor_ceiling(t_game *game_data)
-// {
-// 	uint32_t ceiling_color = 0xFF87CEEB; // Sky blue color (with alpha)
-// 	uint32_t floor_color = 0xFF8B4513;   // Brown color (with alpha)
-
-// 	for (uint32_t y = 0; y < game_data->img->height; y++) {
-// 		for (uint32_t x = 0; x < game_data->img->width; x++) {
-// 			if (y < game_data->img->height / 2) {
-// 				((uint32_t*)game_data->img->pixels)[y * game_data->img->width + x] = ceiling_color;
-// 			} else {
-// 				((uint32_t*)game_data->img->pixels)[y * game_data->img->width + x] = floor_color;
-// 			}
-// 		}
-// 	}
-// }
 
 void	loop_hook(void* param)
 {
@@ -81,7 +66,7 @@ void	loop_hook(void* param)
 	data = param;
 	mlx_delete_image(data->mlx, data->img);
 	data->img = mlx_new_image(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	// hook(data, 0, 0);
+	control(data, 0, 0);
 	ray_cast(data);
 	mlx_image_to_window(data->mlx, data->img, 0, 0);
 }
@@ -93,17 +78,17 @@ int main(int argc, char **argv)
 
 	(void)argv;
 	(void)argc;
-	// if (argc == 2)
-	// {
-	// 	if (read_mapfile(argv[1], cub))
-	// 		printf("map read :)\n");
-	// 	else
-	// 	{
-	// 		printf("error reading cub file\n");
-	// 		cub = init_testmap();
-	// 	}
-	// }
-	// else
+	if (argc == 2)
+	{
+		if (read_mapfile(argv[1], cub))
+			printf("map read :)\n");
+		else
+		{
+			printf("error reading cub file\n");
+			cub = init_testmap();
+		}
+	}
+	else
 		cub = init_testmap();
 	game_data.cub = cub;
 	game_data.player = ft_calloc(1, sizeof(t_player));
@@ -111,7 +96,7 @@ int main(int argc, char **argv)
 	game_data.mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3d", 0);
 	init(game_data);
 	mlx_loop_hook(game_data.mlx, &loop_hook, &game_data);
-	// mlx_key_data(game_data.mlx, &control, &game_data);
+	mlx_key_hook(game_data.mlx, &key, &game_data);
 	// Main loop with rendering
 	mlx_loop(game_data.mlx);
 

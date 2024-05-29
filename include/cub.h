@@ -6,7 +6,7 @@
 /*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:54:12 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/28 20:24:45 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/05/29 01:03:01 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@
 #define SCREEN_HEIGHT 980
 #define TILE 30
 #define FOV 60
+#define SPEED 4
+#define ROT 0.045
+
 
 typedef struct s_player
 {
@@ -72,9 +75,9 @@ typedef struct s_game
 
 //raycasting
 
-int	check_circle(float angle, char c);
-int	check_intersect(float angle, float *inter, float *step, int horiflag);
-int	wall_hit(float x, float y, t_game *data);
+int		check_circle(float angle, char c);
+int		check_intersect(float angle, float *inter, float *step, int horiflag);
+int		wall_hit(float x, float y, t_game *data);
 float	nor_angle(float angle);
 float	find_h_intersect(t_game *data, float angle);
 float	find_v_intersect(t_game *data, float angle);
@@ -87,6 +90,14 @@ void	draw_floor_ceiling(t_game *data, int ray, int t_pix, int b_pix);
 int		get_color(t_game *data, int flag);
 void	draw_wall(t_game *data, int ray, int t_pix, int b_pix);
 void	render(t_game *data, int ray);
+
+// controlling
+
+void 	key(mlx_key_data_t keydata, void *param);
+void	release(t_game *data, mlx_key_data_t keydata);
+void	move(t_game *data, double movex, double movey);
+void	rotate(t_game *data, int i);
+void	control(t_game *data, double movex, double movey);
 
 // parse
 
@@ -101,5 +112,6 @@ int		is_mapchar(char c);
 void	set_mapsize(t_cub *cub);
 
 void	print_map(char **map);
+void	ft_free(t_game *data);
 
 #endif

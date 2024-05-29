@@ -6,16 +6,11 @@
 /*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 19:32:17 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/28 20:24:48 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/05/28 23:53:17 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub.h"
-
-// void	render(t_cub *cub)
-// {
-	
-// }
 
 void	pixel_put(t_game *data, int x, int y, int color)
 {
@@ -30,17 +25,16 @@ void	pixel_put(t_game *data, int x, int y, int color)
 	mlx_put_pixel(data->img, x, y, color);
 }
 
-void	draw_floor_ceiling(t_game *data, int ray, int t_pix, int b_pix)
+void	draw_floor_ceiling(t_game *data, int ray, int tpix, int bpix)
 {
- int  i;
-//  int  c;
+	int	i;
 
-	i = b_pix;
+	i = bpix;
 	while (i < SCREEN_HEIGHT)
-		pixel_put(data, ray, i++, 0xB99470FF);
+		pixel_put(data, ray, i++, 0xC09470FF);
 	i = 0;
-	while (i < t_pix)
-		pixel_put(data, ray, i++, 0x89CFF3FF);
+	while (i < tpix)
+		pixel_put(data, ray, i++, 0x00000000);
 }
 
 int	get_color(t_game *data, int flag)
@@ -62,29 +56,30 @@ int	get_color(t_game *data, int flag)
 	}
 }
 
-void draw_wall(t_game *data, int ray, int t_pix, int b_pix)
+void	draw_wall(t_game *data, int ray, int tpix, int bpix)
 {
-	int color;
+	int	color;
 
 	color = get_color(data, data->ray->wallflag);
-	while (t_pix < b_pix)
-		pixel_put(data, ray, t_pix++, color);
+	while (tpix < bpix)
+		pixel_put(data, ray, tpix++, color);
 }
 
-void render(t_game *data, int ray) // render the wall
+void	render(t_game *data, int ray) // render the wall
 {
-	double wall_h;
-	double b_pix;
-	double t_pix;
+	double wallh;
+	double bpix;
+	double tpix;
 
 	data->ray->dist *= cos(nor_angle(data->ray->rayangle - data->player->angle)); // fix the fisheye
-	wall_h = (TILE / data->ray->dist) * ((SCREEN_WIDTH / 2) / tan(data->player->fovradian / 2)); // get the wall height
-	b_pix = (SCREEN_HEIGHT / 2) + (wall_h / 2); // get the bottom pixel
-	t_pix = (SCREEN_HEIGHT / 2) - (wall_h / 2); // get the top pixel
-	if (b_pix > SCREEN_HEIGHT) // check the bottom pixel
-		b_pix = SCREEN_HEIGHT;
-	if (t_pix < 0) // check the top pixel
-		t_pix = 0;
-	draw_wall(data, ray, t_pix, b_pix); // draw the wall
-	draw_floor_ceiling(data, ray, t_pix, b_pix); // draw the floor and the ceiling
+	wallh = (TILE / data->ray->dist) * ((SCREEN_WIDTH / 2) / tan(data->player->fovradian / 2)); // get the wall height
+	bpix = (SCREEN_HEIGHT / 2) + (wallh / 2); // get the bottom pixel
+	tpix = (SCREEN_HEIGHT / 2) - (wallh / 2); // get the top pixel
+	if (bpix > SCREEN_HEIGHT) // check the bottom pixel
+		bpix = SCREEN_HEIGHT;
+	if (tpix < 0) // check the top pixel
+		tpix = 0;
+	draw_wall(data, ray, tpix, bpix); // draw the wall
+	draw_floor_ceiling(data, ray, tpix, bpix); // draw the floor and the ceiling
 }
+
