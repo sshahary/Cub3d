@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:04:14 by asemsey           #+#    #+#             */
-/*   Updated: 2024/05/29 11:47:47 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/05/29 17:06:08 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int		read_mapfile(char *filename, t_cub *cub);
 int		map_length(char *filename);
 char	*read_map(t_cub *cub, char *last_line, int fd);
 char	*read_variables(t_cub *cub, int fd);
+void	trim_newlines(char **map);
 
 // main parsing function
 int	read_mapfile(char *filename, t_cub *cub)
@@ -37,10 +38,11 @@ int	read_mapfile(char *filename, t_cub *cub)
 	if (!cub->map)
 		return (0);
 	line = read_map(cub, line, fd);
-	if (line)
-		return (0);
-	// if (line || !map_valid(cub))
+	trim_newlines(cub->map);
+	// if (line)
 	// 	return (0);
+	if (line || !map_valid(cub))
+		return (0);
 	set_mapsize(cub);
 	close(fd);
 	return (1);
@@ -114,4 +116,22 @@ int		map_length(char *filename)
 	}
 	free(line);
 	return (close(fd), count);
+}
+
+void	trim_newlines(char **map)
+{
+	int		i;
+	char	*str;
+
+	i = 0;
+	while (map && map[i])
+	{
+		str = map[i++];
+		while (*str)
+		{
+			if (*str == '\n')
+				*str = '\0';
+			str++;
+		}
+	}
 }
