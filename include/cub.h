@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:54:12 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/29 01:03:01 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:27:16 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,14 +102,14 @@ void	control(t_game *data, double movex, double movey);
 // parse
 
 int		read_mapfile(char *filename, t_cub *cub);
-char	*read_variables(t_cub *cub, int fd);
-int		is_identifier(char *str);
+int		map_length(char *filename);
 void	get_identifier(char *line, t_cub *cub);
-int		is_rgb(char *str, int iter);
-void	set_rgb(char *str, t_rgb *rgb);
-int		is_mapline(char *str);
-int		is_mapchar(char c);
 void	set_mapsize(t_cub *cub);
+int		ft_isspace(char c);
+int		is_mapline(char *str);
+int		is_identifier(char *str);
+int		is_rgb(char *str, int iter);
+// int		is_mapchar(char c);
 
 void	print_map(char **map);
 void	ft_free(t_game *data);

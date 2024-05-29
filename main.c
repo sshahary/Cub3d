@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:53:23 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/29 01:54:28 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:32:28 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,11 @@ void	loop_hook(void* param)
 int main(int argc, char **argv)
 {
 	t_game game_data;
-	t_cub	*cub = NULL;
+	t_cub	*cub;
 
-	(void)argv;
-	(void)argc;
 	if (argc == 2)
 	{
+		cub = ft_calloc(1, sizeof(t_cub));
 		if (read_mapfile(argv[1], cub))
 			printf("map read :)\n");
 		else

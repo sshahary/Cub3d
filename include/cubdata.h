@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubdata.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 13:29:32 by asemsey           #+#    #+#             */
-/*   Updated: 2024/05/28 20:21:47 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:21:29 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ typedef struct s_cub
 	char	*so_png;
 	char	*ea_png;
 	char	*we_png;
-	t_rgb	c_rgb;
-	t_rgb	f_rgb;
+	int		c_rgb;
+	int		f_rgb;
 	int		map_length;
 	int		map_width;
 	int		x;
