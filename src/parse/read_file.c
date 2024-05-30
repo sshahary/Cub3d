@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:04:14 by asemsey           #+#    #+#             */
-/*   Updated: 2024/05/29 17:06:08 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/05/30 12:29:19 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,10 @@ int	read_mapfile(char *filename, t_cub *cub)
 		return (0);
 	line = read_map(cub, line, fd);
 	trim_newlines(cub->map);
-	// if (line)
-	// 	return (0);
 	if (line || !map_valid(cub))
 		return (0);
-	set_mapsize(cub);
+	set_coordinates(cub);
+	display_struct(cub);
 	close(fd);
 	return (1);
 }
@@ -88,6 +87,7 @@ char	*read_variables(t_cub *cub, int fd)
 			return (line);
 		get_identifier(line, cub);
 	}
+	
 }
 
 // count the map lines to allocate

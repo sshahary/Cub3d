@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 13:31:27 by asemsey           #+#    #+#             */
-/*   Updated: 2024/05/29 17:06:15 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/05/30 12:35:18 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,40 @@
 
 void	get_identifier(char *line, t_cub *cub);
 int		get_rgb(char *str);
-void	set_mapsize(t_cub *cub);
+void	set_coordinates(t_cub *cub);
+void	ft_nullterminate(t_cub *cub);
 
-// map width and length
-void	set_mapsize(t_cub *cub)
+// set player_dir and coordinates
+void	set_player(t_cub *cub, int y)
+{
+	int		i;
+	char	c;
+
+	i = 0;
+	c = 0;
+	cub->y = y;
+	while (cub->map[y][i] && !c)
+	{
+		if (cub->map[y][i] == 'E' || cub->map[y][i] == 'S'
+			|| cub->map[y][i] == 'W' || cub->map[y][i] == 'N')
+		{
+			c = cub->map[y][i];
+			cub->x = i;
+		}
+		i++;
+	}
+	if (c == 'E')
+		cub->player_dir = 0;
+	if (c == 'S')
+		cub->player_dir = 1;
+	if (c == 'W')
+		cub->player_dir = 2;
+	if (c == 'N')
+		cub->player_dir = 3;
+}
+
+// map width and length, player coordinates
+void	set_coordinates(t_cub *cub)
 {
 	int		i;
 	int		max_len;
@@ -28,6 +58,9 @@ void	set_mapsize(t_cub *cub)
 	max_len = 0;
 	while (cub->map[i])
 	{
+		if (ft_strchr(cub->map[i], 'N') || ft_strchr(cub->map[i], 'S')
+			|| ft_strchr(cub->map[i], 'E') || ft_strchr(cub->map[i], 'W'))
+			set_player(cub, i);
 		if ((int)ft_strlen(cub->map[i]) > max_len)
 			max_len = (int)ft_strlen(cub->map[i]);
 		i++;
@@ -52,7 +85,8 @@ int	get_rgb(char *str)
 	while (ft_isdigit(*str))
 		str++;
 	b = ft_atoi(++str);
-	return (r << 24 | g << 16 | b << 8);
+	// printf("color: %x\n", r << 24 | g << 16 | b << 8 | 0);
+	return (r << 24 | g << 16 | b << 8 | 255);
 }
 
 // get the content of a texture/color line
@@ -60,6 +94,8 @@ void	get_identifier(char *line, t_cub *cub)
 {
 	char	*filename;
 	
+	if (ft_strlen(line) < 3)
+		return ;
 	filename = line + 2;
 	while (*filename && *filename == ' ')
 		filename++;
@@ -77,5 +113,10 @@ void	get_identifier(char *line, t_cub *cub)
 		cub->f_rgb = get_rgb(filename);
 	else if (!ft_strncmp(line, "C ", 2))
 		cub->c_rgb = get_rgb(filename);
+	ft_nullterminate(cub);
 }
 
+void	ft_nullterminate(t_cub *cub)
+{
+	(void)cub;
+}

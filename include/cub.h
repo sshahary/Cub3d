@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:54:12 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/29 21:53:25 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/05/30 12:28:56 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef CUB_H
 # define CUB_H
 
 # include <unistd.h>
@@ -22,15 +23,14 @@
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "cubdata.h"
 
-#define WIDTH 5120
-#define HEIGHT 2880
-#define SCREEN_WIDTH 1200
-#define SCREEN_HEIGHT 980
-#define TILE 30
-#define FOV 60
-#define SPEED 4
-#define ROT 0.045
-
+# define WIDTH 5120
+# define HEIGHT 2880
+# define SCREEN_WIDTH 1200
+# define SCREEN_HEIGHT 980
+# define TILE 30
+# define FOV 60
+# define SPEED 4
+# define ROT 0.045
 
 typedef struct s_player
 {
@@ -49,17 +49,6 @@ typedef struct s_ray
 	double	dist;
 	int		wallflag;
 }	t_ray;
-
-//data structure for 2dmap
-// typedef struct s_cub2
-// {
-// 	char	**maps;
-// 	int		x;
-// 	int		y;
-// 	int		wid;
-// 	int		height;
-// }	t_cub2;
-// please rename -anna
 
 // main structure
 typedef struct s_game
@@ -104,7 +93,7 @@ void	control(t_game *data, double movex, double movey);
 int		read_mapfile(char *filename, t_cub *cub);
 int		map_length(char *filename);
 void	get_identifier(char *line, t_cub *cub);
-void	set_mapsize(t_cub *cub);
+void	set_coordinates(t_cub *cub);
 int		ft_isspace(char c);
 int		is_mapline(char *str);
 int		is_identifier(char *str);
@@ -113,6 +102,7 @@ int		map_valid(t_cub *cub);
 // int		is_mapchar(char c);
 
 void	print_map(char **map);
+void	display_struct(t_cub *cub);
 void	ft_free(t_game *data);
 void	ft_error(char *str);
 

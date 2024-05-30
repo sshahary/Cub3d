@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 11:55:15 by asemsey           #+#    #+#             */
-/*   Updated: 2024/05/29 17:12:42 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/05/30 12:30:36 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,16 @@ void	print_map(char **map)
 		printf("%d\t%s\n", i, map[i]);
 		i++;
 	}
+}
+
+void	display_struct(t_cub *cub)
+{
+	printf("t_cub:\n");
+	printf("player facing %d at %d, %d\n", cub->player_dir, cub->y, cub->x);
+	printf("ea: %s\n", cub->ea_png);
+	printf("we: %s\n", cub->we_png);
+	printf("no: %s\n", cub->no_png);
+	printf("so: %s\n", cub->so_png);
+	printf("ceiling: %x\n", cub->c_rgb);
+	printf("floor: %x\n", cub->f_rgb);
 }

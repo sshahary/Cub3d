@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 11:55:15 by asemsey           #+#    #+#             */
-/*   Updated: 2024/05/29 10:43:27 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/05/30 12:02:48 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	is_rgb(char *str, int iter)
 		return (0);
 	if (iter < 2 && *str++ != ',')
 		return (0);
-	if (iter >= 2 && !*str)
+	if (iter >= 2 && (!*str || *str == '\n'))
 		return (1);
 	return (is_rgb(str, ++iter));
 }

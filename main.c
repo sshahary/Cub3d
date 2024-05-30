@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:53:23 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/29 19:43:43 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/05/30 10:05:37 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ int main(int argc, char **argv)
 	t_game game_data;
 	t_cub	*cub;
 
+	(void)argv;
+	(void)argc;
 	if (argc == 2)
 	{
 		cub = ft_calloc(1, sizeof(t_cub));

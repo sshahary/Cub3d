@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubdata.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 13:29:32 by asemsey           #+#    #+#             */
-/*   Updated: 2024/05/29 19:15:15 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/05/30 12:27:38 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,16 @@ typedef struct s_cub
 	int		f_rgb;
 	int		map_length;
 	int		map_width;
+	int		player_dir;
 	int		x;
 	int		y;
 }	t_cub;
+
+// playerdir:
+// 		0 E
+// 		1 S
+// 		2 W
+// 		3 N
 
 typedef struct s_texture
 {
