@@ -6,7 +6,7 @@
 /*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 19:32:17 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/29 19:47:33 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/05/30 12:34:16 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	get_color(t_game *data, int flag)
 			return (0xB5B5B5FF); // west wall
 		}
 		else
-			return (0xB5B5B5FF); // east wall
+			return (0xB5B4B5FF); // east wall
 	}
 	else
 	{
@@ -81,7 +81,7 @@ void	draw_wall(t_game *data, int ray, int tpix, int bpix)
 }
 int get_texel_color(mlx_texture_t *texture, int tex_x, int tex_y)
 {
-    return ((int*)texture->pixels)[tex_y * texture->width + tex_x];
+    return ((int*)texture->pixels)[tex_y * texture->width +  tex_x];
 }
 
 // void draw_textured_wall(t_game *data, int ray, int tpix, int bpix) {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:54:12 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/30 12:28:56 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/05/30 12:37:19 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,15 @@
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "cubdata.h"
 
-# define WIDTH 5120
-# define HEIGHT 2880
-# define SCREEN_WIDTH 1200
-# define SCREEN_HEIGHT 980
-# define TILE 30
-# define FOV 60
-# define SPEED 4
-# define ROT 0.045
+#define WIDTH 5120
+#define HEIGHT 2880
+#define SCREEN_WIDTH 1200
+#define SCREEN_HEIGHT 980
+#define TILE 30
+#define FOV 60
+#define SPEED 2
+#define ROT 0.045
+
 
 typedef struct s_player
 {
