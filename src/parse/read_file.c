@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:04:14 by asemsey           #+#    #+#             */
-/*   Updated: 2024/05/30 12:29:19 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/05/30 12:44:36 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		read_mapfile(char *filename, t_cub *cub);
 int		map_length(char *filename);
 char	*read_map(t_cub *cub, char *last_line, int fd);
 char	*read_variables(t_cub *cub, int fd);
-void	trim_newlines(char **map);
+void	trim_newlines(t_cub *cub);
 
 // main parsing function
 int	read_mapfile(char *filename, t_cub *cub)
@@ -38,7 +38,7 @@ int	read_mapfile(char *filename, t_cub *cub)
 	if (!cub->map)
 		return (0);
 	line = read_map(cub, line, fd);
-	trim_newlines(cub->map);
+	trim_newlines(cub);
 	if (line || !map_valid(cub))
 		return (0);
 	set_coordinates(cub);
@@ -118,15 +118,37 @@ int		map_length(char *filename)
 	return (close(fd), count);
 }
 
-void	trim_newlines(char **map)
+static void	ft_nullterminate(t_cub *cub)
+{
+	char	*str;
+	
+	str = cub->no_png;
+	while (str && *str && *str != '\n')
+		str++;
+	*str = '\0';
+	str = cub->ea_png;
+	while (str && *str && *str != '\n')
+		str++;
+	*str = '\0';
+	str = cub->so_png;
+	while (str && *str && *str != '\n')
+		str++;
+	*str = '\0';
+	str = cub->we_png;
+	while (str && *str && *str != '\n')
+		str++;
+	*str = '\0';
+}
+
+void	trim_newlines(t_cub *cub)
 {
 	int		i;
 	char	*str;
 
 	i = 0;
-	while (map && map[i])
+	while (cub->map && cub->map[i])
 	{
-		str = map[i++];
+		str = cub->map[i++];
 		while (*str)
 		{
 			if (*str == '\n')
@@ -134,4 +156,5 @@ void	trim_newlines(char **map)
 			str++;
 		}
 	}
+	ft_nullterminate(cub);
 }

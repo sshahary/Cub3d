@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 13:31:27 by asemsey           #+#    #+#             */
-/*   Updated: 2024/05/30 12:35:18 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/05/30 15:14:54 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	get_identifier(char *line, t_cub *cub);
 int		get_rgb(char *str);
 void	set_coordinates(t_cub *cub);
-void	ft_nullterminate(t_cub *cub);
 
 // set player_dir and coordinates
 void	set_player(t_cub *cub, int y)
@@ -85,7 +84,6 @@ int	get_rgb(char *str)
 	while (ft_isdigit(*str))
 		str++;
 	b = ft_atoi(++str);
-	// printf("color: %x\n", r << 24 | g << 16 | b << 8 | 0);
 	return (r << 24 | g << 16 | b << 8 | 255);
 }
 
@@ -113,10 +111,6 @@ void	get_identifier(char *line, t_cub *cub)
 		cub->f_rgb = get_rgb(filename);
 	else if (!ft_strncmp(line, "C ", 2))
 		cub->c_rgb = get_rgb(filename);
-	ft_nullterminate(cub);
 }
 
-void	ft_nullterminate(t_cub *cub)
-{
-	(void)cub;
-}
+
