@@ -1,3 +1,4 @@
+
 NAME		= full_libft.a
 
 CC			= gcc

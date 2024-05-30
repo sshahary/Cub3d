@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:53:23 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/30 10:05:37 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/05/30 16:59:07 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ void	init(t_game game_data)
 
 void load_textures(t_game *data)
 {
-	data->textures.north = mlx_load_png("texture/brick1.png");
-	data->textures.south = mlx_load_png("texture/brick1.png");
-	data->textures.east = mlx_load_png("texture/brick1.png");
-	data->textures.west = mlx_load_png("texture/brick1.png");
-
+	data->textures.north = mlx_load_png(data->cub->no_png);
+	data->textures.south = mlx_load_png(data->cub->so_png);
+	data->textures.east = mlx_load_png(data->cub->we_png);
+	data->textures.west = mlx_load_png(data->cub->ea_png);
+	// data->textures.south.
 	if (!data->textures.north || !data->textures.south ||
 		!data->textures.east || !data->textures.west) {
 		ft_error("Failed to load textures");

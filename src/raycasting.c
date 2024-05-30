@@ -6,7 +6,7 @@
 /*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 23:49:39 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/29 18:50:22 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:04:01 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,10 @@ void	ray_cast(t_game *data)
 			data->ray->dist = vint; // get the distance
 		else
 		{
-			data->ray->dist = hint
-			; // get the distance
+			data->ray->dist = hint; // get the distance
 			data->ray->wallflag = 1; // flag for the wall
 		}
+		printf("%f\n: ", data->ray->rayangle);
 		render(data, i); // render the wall
 		i++; // next ray
 		data->ray->rayangle += (data->player->fovradian / SCREEN_WIDTH); // next angle
