@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:54:12 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/30 17:18:01 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:08:54 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,12 @@
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "cubdata.h"
 
-#define WIDTH 5120
-#define HEIGHT 2880
 #define SCREEN_WIDTH 1200
 #define SCREEN_HEIGHT 980
 #define TILE 30
 #define FOV 60
 #define SPEED 2
 #define ROT 0.045
-
 
 typedef struct s_player
 {
@@ -48,6 +45,8 @@ typedef struct s_ray
 {
 	double	rayangle;
 	double	dist;
+	double	h_dist;
+	double	v_dist;
 	int		wallflag;
 }	t_ray;
 
@@ -77,8 +76,8 @@ void	ray_cast(t_game *data);
 
 void	pixel_put(t_game *data, int x, int y, int color);
 void	draw_floor_ceiling(t_game *data, int ray, int t_pix, int b_pix);
-int		get_color(t_game *data, int flag);
-void	draw_wall(t_game *data, int ray, int t_pix, int b_pix);
+void	get_color(t_game *data);
+// void	draw_wall(t_game *data, int ray, int t_pix, int b_pix);
 void	render(t_game *data, int ray);
 
 // controlling

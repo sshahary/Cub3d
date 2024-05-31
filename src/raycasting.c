@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 23:49:39 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/30 17:04:01 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:53:49 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ float	nor_angle(float angle)
 	return angle;
 }
 
-//get horizantal intersection
+//get horizantal intersection distance
 float	find_h_intersect(t_game *data, float angle)
 {
 	float	hx;
@@ -73,8 +73,6 @@ float	find_v_intersect(t_game *data, float angle)
 
 void	ray_cast(t_game *data)
 {
-	double	hint;
-	double	vint;
 	int		i;
 
 	i = 0;
@@ -82,16 +80,17 @@ void	ray_cast(t_game *data)
 	while (i < SCREEN_WIDTH) // loop for the rays
 	{
 		data->ray->wallflag = 0; // flag for the wall
-		hint = find_h_intersect(data, nor_angle(data->ray->rayangle)); // get the horizontal intersection
-		vint = find_v_intersect(data, nor_angle(data->ray->rayangle)); // get the vertical intersection
-		if (vint <= hint) // check the distance
-			data->ray->dist = vint; // get the distance
+		data->ray->h_dist = find_h_intersect(data, nor_angle(data->ray->rayangle)); // get the horizontal intersection
+		data->ray->v_dist = find_v_intersect(data, nor_angle(data->ray->rayangle)); // get the vertical intersection
+		// printf("dist: %f, %f\n", hint, vint);
+		if (data->ray->v_dist <= data->ray->h_dist) // check the distance
+			data->ray->dist = data->ray->v_dist; // get the distance
 		else
 		{
-			data->ray->dist = hint; // get the distance
+			data->ray->dist = data->ray->h_dist; // get the distance
 			data->ray->wallflag = 1; // flag for the wall
 		}
-		printf("%f\n: ", data->ray->rayangle);
+		// printf("%f\n: ", data->ray->rayangle);
 		render(data, i); // render the wall
 		i++; // next ray
 		data->ray->rayangle += (data->player->fovradian / SCREEN_WIDTH); // next angle

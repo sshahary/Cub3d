@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 19:32:17 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/30 17:29:50 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:16:25 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,41 +37,61 @@ void	draw_floor_ceiling(t_game *data, int ray, int tpix, int bpix)
 		pixel_put(data, ray, i++, data->cub->f_rgb);// read colors
 }
 
-int	get_color(t_game *data, int flag)
+void	get_color(t_game *data)
 {
 	data->ray->rayangle = nor_angle(data->ray->rayangle); 
-	if (flag == 0)
+	if (data->ray->wallflag == 0)
 	{
 		if (data->ray->rayangle > M_PI / 2 && data->ray->rayangle < 3 * (M_PI / 2))
-		{
-			
-			return (0xB5B5B5FF); // west wall
-		}
+			data->texture = data->textures.west;
 		else
-			return (0xB5B4B5FF); // east wall
+			data->texture = data->textures.east;
 	}
 	else
 	{
 		if (data->ray->rayangle > 0 && data->ray->rayangle < M_PI)
-			return (0xF5F5F5FF); // south wall
+			data->texture = data->textures.south;
 		else
-			return (0xF5F5F5FF); // north wall
+			data->texture = data->textures.north;
 	}
 }
 
-void	draw_wall(t_game *data, int ray, int tpix, int bpix)
-{
-	int	color;
+// int	get_color(t_game *data, int flag)
+// {
+// 	data->ray->rayangle = nor_angle(data->ray->rayangle); 
+// 	if (flag == 0)
+// 	{
+// 		if (data->ray->rayangle > M_PI / 2 && data->ray->rayangle < 3 * (M_PI / 2))
+// 		{
+			
+// 			return (0xB5B5B5FF); // west wall
+// 		}
+// 		else
+// 			return (0xB5B4B5FF); // east wall
+// 	}
+// 	else
+// 	{
+// 		if (data->ray->rayangle > 0 && data->ray->rayangle < M_PI)
+// 			return (0xF5F5F5FF); // south wall
+// 		else
+// 			return (0xF5F5F5FF); // north wall
+// 	}
+// }
 
-	color = get_color(data, data->ray->wallflag);
-	while (tpix < bpix)
-		pixel_put(data, ray, tpix++, color);
-}
+// void	draw_wall(t_game *data, int ray, int tpix, int bpix)
+// {
+// 	int	color;
+
+// 	color = get_color(data, data->ray->wallflag);
+// 	while (tpix < bpix)
+// 		pixel_put(data, ray, tpix++, color);
+// }
 
 int	get_rgba(int r, int g, int b, int a)
 {
 	return (r << 24 | g << 16 | b << 8 | a);
 }
+
 int get_texel_color(mlx_texture_t *texture, int tex_x, int tex_y)
 {
 	unsigned int	i;
@@ -80,48 +100,78 @@ int get_texel_color(mlx_texture_t *texture, int tex_x, int tex_y)
 	return (get_rgba(texture->pixels[i], texture->pixels[i + 1], texture->pixels[i + 2], texture->pixels[i + 3]));
 }
 
+// calculate_texture_x
+static int	get_texture_x(t_game *data)
+{
+	int		texture_x;
+
+	if (data->ray->wallflag == 0)
+		texture_x = fmod(data->ray->v_dist, TILE);
+	else
+		texture_x = fmod(data->ray->h_dist, TILE);
+	// texture_x = (int)(relative_pos / TILE * texture_width);
+	if (data->texture == data->textures.west || data->texture == data->textures.south)
+		texture_x = TILE - texture_x - 1;
+	// texture_x = texture_width - texture_x - 1;
+	return (texture_x);
+}
+
+// void	draw_wall(t_game *data, int ray, int top, int bot)
+// {
+// 	int		tex_x;
+// 	int		tex_y;
+// 	double	step;
+// 	double	tex_pos;
+
+// 	get_texture(data);
+// 	step = (double)data->tex[data->f_tex]->height / (bot - top);
+// 	tex_x = c_tex_x(data, data->tex[data->f_tex]->width);
+// 	if ((bot - top) > HEIGHT)
+// 		tex_y = top - (HEIGHT / 2) + ((bot - top) / 2) * step;
+// 	else
+// 		tex_y = HEIGHT;
+// 	tex_pos = 0;
+// 	while (top < bot && top < HEIGHT)
+// 	{
+// 		tex_y = (int)tex_pos % data->tex[data->f_tex]->height;
+// 		tex_pos += step;
+// 		if (top < 0)
+// 		{
+// 			top++;
+// 			continue ;
+// 		}
+// 		mlx_put_pixel(data->window, ray, top++,
+// 			get_texel_color(data->tex[data->f_tex], tex_x, tex_y));
+// 	}
+// }
+
 void draw_textured_wall(t_game *data, int ray, int tpix, int bpix)
 {
-    int color;
-    int tex_x;
-    int tex_y;
-    double step;
-    double tex_pos;
-    int wall_height = (TILE / data->ray->dist) * ((SCREEN_WIDTH / 2) / tan(data->player->fovradian / 2));;
-    mlx_texture_t *texture;
+	int tex_x;
+	int tex_y;
+	double step;
+	double tex_pos;
 
-    // Determine which texture to use
-    if (data->ray->wallflag == 0) {
-        if (data->ray->rayangle > M_PI / 2 && data->ray->rayangle < 3 * (M_PI / 2))
+	get_color(data);
+	step = (double)data->texture->height / (bpix - tpix);
+	tex_x = get_texture_x(data);
+	if ((bpix - tpix) > SCREEN_HEIGHT)
+		tex_y = tpix - (SCREEN_HEIGHT / 2) + ((bpix - tpix) / 2) * step;
+	else
+		tex_y = SCREEN_HEIGHT;
+	tex_pos = 0;
+	while (tpix < bpix && tpix < SCREEN_HEIGHT)
+	{
+		tex_y = (int)tex_pos % data->texture->height;
+		tex_pos += step;
+		if (tpix < 0)
 		{
-            texture = data->textures.west;
-        } else {
-            texture = data->textures.east;
-        }
-    } else {
-        if (data->ray->rayangle > 0 && data->ray->rayangle < M_PI) {
-            texture = data->textures.south;
-        } else {
-            texture = data->textures.north;
-        }
-    }
-
-    // Calculate texture x coordinate
-    tex_x = (int)(data->ray->wallflag * texture->width);
-    if ((data->ray->wallflag == 0 && data->ray->rayangle > M_PI / 2 && data->ray->rayangle < 3 * (M_PI / 2)) ||
-        (data->ray->wallflag == 1 && data->ray->rayangle > M_PI)) {
-        tex_x = texture->width - tex_x - 1;
-    }
-
-    step = 1.0 * texture->height / wall_height;
-    tex_pos = (tpix - SCREEN_HEIGHT / 2 + wall_height / 2) * step;
-
-    while (tpix < bpix) {
-        tex_y = (int)tex_pos & (texture->height - 1);
-        tex_pos += step;
-        color = get_texel_color(texture, tex_x, tex_y);
-        pixel_put(data, ray, tpix++, color);
-    }
+			tpix++;
+			continue ;
+		}
+		mlx_put_pixel(data->img, ray, tpix++,
+			get_texel_color(data->texture, tex_x, tex_y));
+	}
 }
 
 
