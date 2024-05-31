@@ -6,7 +6,11 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 23:49:39 by sshahary          #+#    #+#             */
+<<<<<<< Updated upstream
 /*   Updated: 2024/05/31 14:53:49 by asemsey          ###   ########.fr       */
+=======
+/*   Updated: 2024/05/31 13:17:54 by sshahary         ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +81,7 @@ void	ray_cast(t_game *data)
 
 	i = 0;
 	data->ray->rayangle = data->player->angle - (data->player->fovradian / 2); // the start angle
+	// printf("%f\n", data->ray->rayangle);
 	while (i < SCREEN_WIDTH) // loop for the rays
 	{
 		data->ray->wallflag = 0; // flag for the wall

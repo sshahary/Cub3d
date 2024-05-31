@@ -6,7 +6,7 @@
 /*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:53:23 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/30 16:59:07 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/05/31 13:16:49 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	init(t_game game_data)
 	game_data.player->y = game_data.cub->y * TILE + TILE / 2;
 	game_data.player->fovradian = FOV * M_PI / 180;
 	game_data.player->angle = M_PI;
+	printf("x: %d\n, y: %d\n", game_data.player->x, game_data.player->y);
 	
 }
 

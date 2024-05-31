@@ -6,7 +6,7 @@
 /*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 13:29:32 by asemsey           #+#    #+#             */
-/*   Updated: 2024/05/30 12:36:57 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/05/31 13:17:13 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ typedef struct s_point
 	int	x;//left right
 	int	y;//up down
 }	t_point;
+
+enum t_dir{
+	NORTH = 0,
+	SOUTH = 1,
+	WEST = 2,
+	EAST = 3
+};
 
 typedef struct s_cub
 {

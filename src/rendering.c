@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 19:32:17 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/31 15:16:25 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/05/31 15:28:02 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../include/cub.h"
 
@@ -189,8 +190,8 @@ void	render(t_game *data, int ray) // render the wall
 		bpix = SCREEN_HEIGHT;
 	if (tpix < 0) // check the top pixel
 		tpix = 0;
-	draw_textured_wall(data, ray, tpix, bpix);
-	// draw_wall(data, ray, tpix, bpix); // draw the wall
+	// draw_textured_wall(data, ray, tpix, bpix);
+	draw_wall(data, ray, tpix, bpix); // draw the wall
 	draw_floor_ceiling(data, ray, tpix, bpix); // draw the floor and the ceiling
 }
 
