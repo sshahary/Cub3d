@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/26 23:49:39 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/31 15:29:45 by asemsey          ###   ########.fr       */
+/*   Created: 2024/05/31 15:33:26 by sshahary          #+#    #+#             */
+/*   Updated: 2024/05/31 15:40:44 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ float	find_h_intersect(t_game *data, float angle)
 		hx += xstep;
 		hy += ystep;
 	}
+	data->ray->h_dist = hx;
 	return (sqrt(pow(hx - data->player->x, 2) + pow(hy - data->player->y, 2)));
 }
 
@@ -68,12 +69,16 @@ float	find_v_intersect(t_game *data, float angle)
 		vx += xstep;
 		vy += ystep;
 	}
+	data->ray->v_dist = vy;
 	return (sqrt(pow(vx - data->player->x, 2) + pow(vy - data->player->y, 2)));
 }
 
 void	ray_cast(t_game *data)
 {
 	int		i;
+	double	hdist;
+	double	vdist;
+	
 
 	i = 0;
 	data->ray->rayangle = data->player->angle - (data->player->fovradian / 2); // the start angle
@@ -81,14 +86,14 @@ void	ray_cast(t_game *data)
 	while (i < SCREEN_WIDTH) // loop for the rays
 	{
 		data->ray->wallflag = 0; // flag for the wall
-		data->ray->h_dist = find_h_intersect(data, nor_angle(data->ray->rayangle)); // get the horizontal intersection
-		data->ray->v_dist = find_v_intersect(data, nor_angle(data->ray->rayangle)); // get the vertical intersection
+		hdist = find_h_intersect(data, nor_angle(data->ray->rayangle)); // get the horizontal intersection
+		vdist = find_v_intersect(data, nor_angle(data->ray->rayangle)); // get the vertical intersection
 		// printf("dist: %f, %f\n", hint, vint);
-		if (data->ray->v_dist <= data->ray->h_dist) // check the distance
-			data->ray->dist = data->ray->v_dist; // get the distance
+		if (vdist <= hdist) // check the distance
+			data->ray->dist = vdist; // get the distance
 		else
 		{
-			data->ray->dist = data->ray->h_dist; // get the distance
+			data->ray->dist = hdist; // get the distance
 			data->ray->wallflag = 1; // flag for the wall
 		}
 		// printf("%f\n: ", data->ray->rayangle);
