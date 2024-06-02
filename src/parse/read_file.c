@@ -39,9 +39,9 @@ int	read_mapfile(char *filename, t_cub *cub)
 		return (0);
 	line = read_map(cub, line, fd);
 	trim_newlines(cub);
+	set_coordinates(cub);
 	if (line || !map_valid(cub))
 		return (0);
-	set_coordinates(cub);
 	display_struct(cub);
 	close(fd);
 	return (1);
