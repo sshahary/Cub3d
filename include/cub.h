@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:54:12 by sshahary          #+#    #+#             */
-/*   Updated: 2024/06/03 15:34:44 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/03 15:47:01 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 #define TILE 60
 #define FOV 60
 #define SPEED 2
-#define ROT 0.045
+#define ROT 0.05
 
 typedef struct s_player
 {
