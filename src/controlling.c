@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 23:24:02 by sshahary          #+#    #+#             */
-/*   Updated: 2024/06/03 12:56:53 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/03 13:01:43 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void	move(t_game *data, double movex, double movey)
 	mapgridy = newy / TILE;
 
 	// Check for wall collisions at the new position and adjacent positions
-	if (data->cub->map[mapgridy][mapgridx] != '1' && 
-		data->cub->map[mapgridy][(int)data->player->x / TILE] != '1' && 
-		data->cub->map[(int)data->player->y / TILE][mapgridx] != '1')
+	if (data->cub->map[mapgridy][mapgridx] != '1'
+		&& data->cub->map[mapgridy][(int)data->player->x / TILE] != '1'
+		&& data->cub->map[(int)data->player->y / TILE][mapgridx] != '1')
 	{
 		// Update player position if no collision
 		data->player->x = newx;
