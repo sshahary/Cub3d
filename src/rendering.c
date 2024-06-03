@@ -6,22 +6,17 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 19:32:17 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/31 15:30:01 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/03 12:55:42 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../include/cub.h"
 
 void	pixel_put(t_game *data, int x, int y, int color)
 {
-	if (x < 0)
+	if (x < 0 || x >= SCREEN_WIDTH)
 		return ;
-	else if (x >= SCREEN_WIDTH)
-		return ;
-	if (y < 0)
-		return ;
-	else if (y >= SCREEN_HEIGHT)
+	if (y < 0 || y >= SCREEN_HEIGHT)
 		return ;
 	mlx_put_pixel(data->img, x, y, color);
 }
@@ -40,7 +35,7 @@ void	draw_floor_ceiling(t_game *data, int ray, int tpix, int bpix)
 
 void	get_color(t_game *data)
 {
-	data->ray->rayangle = nor_angle(data->ray->rayangle); 
+	data->ray->rayangle = nor_angle(data->ray->rayangle);
 	if (data->ray->wallflag == 0)
 	{
 		if (data->ray->rayangle > M_PI / 2 && data->ray->rayangle < 3 * (M_PI / 2))
@@ -185,10 +180,10 @@ void	render(t_game *data, int ray) // render the wall
 	wallh = (TILE / data->ray->dist) * ((SCREEN_WIDTH / 2) / tan(data->player->fovradian / 2)); // get the wall height
 	bpix = (SCREEN_HEIGHT / 2) + (wallh / 2); // get the bottom pixel
 	tpix = (SCREEN_HEIGHT / 2) - (wallh / 2); // get the top pixel
-	if (bpix > SCREEN_HEIGHT) // check the bottom pixel
-		bpix = SCREEN_HEIGHT;
-	if (tpix < 0) // check the top pixel
-		tpix = 0;
+	// if (bpix > SCREEN_HEIGHT) // check the bottom pixel
+	// 	bpix = SCREEN_HEIGHT;
+	// if (tpix < 0) // check the top pixel
+	// 	tpix = 0;
 	draw_textured_wall(data, ray, tpix, bpix);
 	// draw_wall(data, ray, tpix, bpix); // draw the wall
 	draw_floor_ceiling(data, ray, tpix, bpix); // draw the floor and the ceiling
