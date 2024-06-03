@@ -3,8 +3,8 @@ EA ./texture/brick2.png
 SO ./texture/brick3.png
 WE ./texture/brick4.png
 
-F 110,200,80
-C 120,180,255
+F 0,50,0
+C 0,0,50
 
         1111111111111111111111111
         1000000000110000000000001

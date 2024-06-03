@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:54:12 by sshahary          #+#    #+#             */
-/*   Updated: 2024/06/03 15:47:01 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/03 17:07:01 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 #define SCREEN_HEIGHT 980
 #define TILE 60
 #define FOV 60
-#define SPEED 2
+#define SPEED 3
 #define ROT 0.05
 
 typedef struct s_player
@@ -94,11 +94,11 @@ int		read_mapfile(char *filename, t_cub *cub);
 int		map_length(char *filename);
 void	get_identifier(char *line, t_cub *cub);
 void	set_coordinates(t_cub *cub);
-int		ft_isspace(char c);
 int		is_mapline(char *str);
 int		is_identifier(char *str);
 int		is_rgb(char *str, int iter);
 int		map_valid(t_cub *cub);
+// int		ft_isspace(char c);
 // int		is_mapchar(char c);
 
 void	print_map(char **map, int map_width);
