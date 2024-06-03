@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:53:23 by sshahary          #+#    #+#             */
-/*   Updated: 2024/06/03 15:27:46 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/03 16:44:43 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,14 @@ void load_textures(t_game *data)
 	data->textures.south = mlx_load_png(data->cub->so_png);
 	data->textures.east = mlx_load_png(data->cub->we_png);
 	data->textures.west = mlx_load_png(data->cub->ea_png);
-	// data->textures.south.
+	if (data->cub->player_dir == 0)
+		data->player->angle = 0;
+	if (data->cub->player_dir == 1)
+		data->player->angle = M_PI/2;
+	if (data->cub->player_dir == 2)
+		data->player->angle = M_PI;
+	if (data->cub->player_dir == 3)
+		data->player->angle = M_PI * 3 / 2;
 	if (!data->textures.north || !data->textures.south ||
 		!data->textures.east || !data->textures.west) {
 		ft_error("Failed to load textures");
