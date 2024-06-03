@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:54:12 by sshahary          #+#    #+#             */
-/*   Updated: 2024/06/03 11:51:11 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/03 15:13:15 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@
 
 #define SCREEN_WIDTH 1200
 #define SCREEN_HEIGHT 980
-#define TILE 30
+#define TILE 60
 #define FOV 60
 #define SPEED 2
-#define ROT 0.045
+#define ROT 0.05
 
 typedef struct s_player
 {

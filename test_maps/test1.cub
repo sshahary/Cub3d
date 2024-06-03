@@ -1,7 +1,7 @@
 NO ./texture/brick1.png
-EA ./texture/brick1.png
-SO ./texture/brick1.png
-WE ./texture/brick1.png
+EA ./texture/brick2.png
+SO ./texture/brick3.png
+WE ./texture/brick4.png
 
 F 100,100,255
 C 10,50,50

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 19:32:17 by sshahary          #+#    #+#             */
-/*   Updated: 2024/06/03 12:55:42 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/03 15:09:51 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,8 @@ void	render(t_game *data, int ray) // render the wall
 	double tpix;
 
 	data->ray->dist *= cos(nor_angle(data->ray->rayangle - data->player->angle)); // fix the fisheye
+	if (data->ray->dist == 0)
+		data->ray->dist = 1;
 	wallh = (TILE / data->ray->dist) * ((SCREEN_WIDTH / 2) / tan(data->player->fovradian / 2)); // get the wall height
 	bpix = (SCREEN_HEIGHT / 2) + (wallh / 2); // get the bottom pixel
 	tpix = (SCREEN_HEIGHT / 2) - (wallh / 2); // get the top pixel
