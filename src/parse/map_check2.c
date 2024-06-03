@@ -109,26 +109,56 @@ int	check_line(char **map, int line)
 int	check_column(char **map, int col)
 {
 	int		i;
-	int		start;
 
 	if (!map)
 		return (0);
 	i = 0;
-	start = 0;
-	while (map[start] && is_gap(map, start, col))
-		start++;
-	while (map[start + i])
+	while (map[i])
 	{
-		if ((i == 0 || !map[start + i + 1]) && col < (int)ft_strlen(map[i + start]) && map[i + start][col] != '1')
-			return (0);
-		if (is_gap(map, start + i, col) && !is_gap(map, start + i - 1, col) && map[start + i - 1][col] != '1')
-			return (0);
-		if (is_gap(map, start + i, col) && !is_gap(map, start + i + 1, col) && map[start + i + 1][col] != '1')
-			return (0);
+		if (is_gap(map, i, col) && i > 0 && !is_gap(map, i - 1, col))
+		{
+			if (map[i - 1][col] != '1')
+				return (0);
+		}
+		if (is_gap(map, i, col) && map[i + 1] && !is_gap(map, i + 1, col))
+		{
+			if (map[i + 1][col] != '1')
+				return (0);
+		}
 		i++;
 	}
 	return (1);
 }
+
+// |___|___
+// __|___|_
+// |___|___
+// __|___|_
+
+// // check if each column has a 1 on top and bottom and at gaps
+// int	check_column(char **map, int col)
+// {
+// 	int		i;
+// 	int		start;
+
+// 	if (!map)
+// 		return (0);
+// 	i = 0;
+// 	start = 0;
+// 	while (map[start] && is_gap(map, start, col))
+// 		start++;
+// 	while (map[start + i])
+// 	{
+// 		if ((i == 0 || !map[start + i + 1]) && col < (int)ft_strlen(map[i + start]) && map[i + start][col] != '1')
+// 			return (0);
+// 		if (is_gap(map, start + i, col) && !is_gap(map, start + i - 1, col) && map[start + i - 1][col] != '1')
+// 			return (0);
+// 		if (is_gap(map, start + i, col) && !is_gap(map, start + i + 1, col) && map[start + i + 1][col] != '1')
+// 			return (0);
+// 		i++;
+// 	}
+// 	return (1);
+// }
 
 // check first and last if only 1
 int	check_top_bottom(char **map, int line)
@@ -170,7 +200,7 @@ int	check_lr(char **map, int col)
 
 int	is_gap(char **map, int line, int col)
 {
-	return ((map[line] && (col >= (int)ft_strlen(map[line]) || map[line][col] == ' ')) || !map[line]);
+	return (map[line] && (col >= (int)ft_strlen(map[line]) || map[line][col] == ' '));
 }
 
 int	only_char(char *str, char c)
