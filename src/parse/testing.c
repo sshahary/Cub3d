@@ -6,16 +6,24 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 11:55:15 by asemsey           #+#    #+#             */
-/*   Updated: 2024/05/30 12:30:36 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/03 11:56:14 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub.h"
 
-void	print_map(char **map)
+void	print_map(char **map, int map_width)
 {
 	int	i;
 
+	i = 0;
+	printf("x\t");
+	while (i < map_width)
+	{
+		printf("%d", i % 10);
+		i++;
+	}
+	printf("\n\n");
 	i = 0;
 	while (map && map[i])
 	{

@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:54:12 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/31 15:08:54 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/03 11:51:11 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int		is_rgb(char *str, int iter);
 int		map_valid(t_cub *cub);
 // int		is_mapchar(char c);
 
-void	print_map(char **map);
+void	print_map(char **map, int map_width);
 void	display_struct(t_cub *cub);
 void	ft_free(t_game *data);
 void	ft_error(char *str);

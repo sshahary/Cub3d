@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:53:23 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/31 13:16:49 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/06/03 12:10:35 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ int main(int argc, char **argv)
 			printf("map read :)\n");
 		else
 			ft_error("couldn't read map file");
+		print_map(cub->map, cub->map_width);
 	}
 	else
 		cub = init_testmap();
@@ -122,7 +123,7 @@ int main(int argc, char **argv)
 	mlx_loop(game_data.mlx);
 
 	// Cleanup
-  	mlx_delete_image(game_data.mlx, game_data.img);
+	mlx_delete_image(game_data.mlx, game_data.img);
 	mlx_delete_texture(game_data.textures.north);
 	mlx_delete_texture(game_data.textures.south);
 	mlx_delete_texture(game_data.textures.east);
