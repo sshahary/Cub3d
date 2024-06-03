@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:53:23 by sshahary          #+#    #+#             */
-/*   Updated: 2024/06/03 12:10:35 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/03 15:27:46 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	loop_hook(void* param)
 	data = param;
 	mlx_delete_image(data->mlx, data->img);
 	data->img = mlx_new_image(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	control(data, 0, 0);
+	control(data);
 	ray_cast(data);
 	mlx_image_to_window(data->mlx, data->img, 0, 0);
 }

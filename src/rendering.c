@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 19:32:17 by sshahary          #+#    #+#             */
-/*   Updated: 2024/06/03 12:55:42 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/03 14:55:07 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	draw_floor_ceiling(t_game *data, int ray, int tpix, int bpix)
 
 	i = bpix;
 	while (i < SCREEN_HEIGHT)
-		pixel_put(data, ray, i++, data->cub->c_rgb);
+		pixel_put(data, ray, i++, data->cub->f_rgb);
 	i = 0;
 	while (i < tpix)
-		pixel_put(data, ray, i++, data->cub->f_rgb);// read colors
+		pixel_put(data, ray, i++, data->cub->c_rgb);// read colors
 }
 
 void	get_color(t_game *data)
@@ -177,6 +177,8 @@ void	render(t_game *data, int ray) // render the wall
 	double tpix;
 
 	data->ray->dist *= cos(nor_angle(data->ray->rayangle - data->player->angle)); // fix the fisheye
+	if (data->ray->dist == 0)
+		data->ray->dist = 1;// temporary fix, do not divide by 0!!!
 	wallh = (TILE / data->ray->dist) * ((SCREEN_WIDTH / 2) / tan(data->player->fovradian / 2)); // get the wall height
 	bpix = (SCREEN_HEIGHT / 2) + (wallh / 2); // get the bottom pixel
 	tpix = (SCREEN_HEIGHT / 2) - (wallh / 2); // get the top pixel

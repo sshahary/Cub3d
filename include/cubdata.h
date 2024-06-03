@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubdata.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 13:29:32 by asemsey           #+#    #+#             */
-/*   Updated: 2024/05/31 13:17:13 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:31:17 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 typedef struct s_point
 {
-	int	x;//left right
-	int	y;//up down
+	double	x;//left right
+	double	y;//up down
 }	t_point;
 
 enum t_dir{
