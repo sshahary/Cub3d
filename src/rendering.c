@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 19:32:17 by sshahary          #+#    #+#             */
-/*   Updated: 2024/06/03 15:46:53 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/08 11:35:54 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,15 +100,16 @@ int get_texel_color(mlx_texture_t *texture, int tex_x, int tex_y)
 static int	get_texture_x(t_game *data)
 {
 	int		texture_x;
+	int		temp_pos;
 
 	if (data->ray->wallflag == 0)
-		texture_x = fmod(data->ray->v_dist, TILE);
+		temp_pos = fmod(data->ray->v_dist, TILE);
 	else
-		texture_x = fmod(data->ray->h_dist, TILE);
-	// texture_x = (int)(relative_pos / TILE * texture_width);
+		temp_pos = fmod(data->ray->h_dist, TILE);
+	texture_x = (int)(temp_pos / TILE * data->texture->width);
 	if (data->texture == data->textures.west || data->texture == data->textures.south)
-		texture_x = TILE - texture_x - 1;
-	// texture_x = texture_width - texture_x - 1;
+		temp_pos = TILE - temp_pos - 1;
+	texture_x = data->texture->width - temp_pos - 1;
 	return (texture_x);
 }
 
