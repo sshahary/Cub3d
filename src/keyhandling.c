@@ -6,7 +6,7 @@
 /*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 00:46:51 by sshahary          #+#    #+#             */
-/*   Updated: 2024/05/29 01:03:23 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/06/11 15:17:27 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	release(t_game *data, mlx_key_data_t keydata)
 		data->player->rotate = 0;
 }
 
-void 	key(mlx_key_data_t keydata, void *param)
+void	key(mlx_key_data_t keydata, void *param)
 {
 	t_game	*data;
 
@@ -65,4 +65,11 @@ void 	key(mlx_key_data_t keydata, void *param)
 	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS) // rotate right
 		data->player->rotate = 1;
 	release(data, keydata); 
+}
+
+void	ft_error(char *str)
+{
+	ft_putendl_fd("Error", 2);
+	ft_putendl_fd(str, 2);
+	exit(EXIT_FAILURE);
 }
