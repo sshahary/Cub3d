@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:53:23 by sshahary          #+#    #+#             */
-/*   Updated: 2024/06/08 11:38:38 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/06/11 12:23:21 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ void	init(t_game game_data)
 	game_data.player->y = game_data.cub->y * TILE + TILE / 2;
 	game_data.player->fovradian = FOV * M_PI / 180;
 	game_data.player->angle = M_PI;
-	printf("x: %d\n, y: %d\n", game_data.player->x, game_data.player->y);
-	
+	// printf("x: %d\n, y: %d\n", game_data.player->x, game_data.player->y);
 }
 
 // void clear_image(mlx_image_t *img, uint32_t color)
@@ -107,5 +106,5 @@ int main(int argc, char **argv)
 	mlx_delete_texture(game_data.textures.east);
 	mlx_delete_texture(game_data.textures.west);
 	mlx_terminate(game_data.mlx);
-	return EXIT_SUCCESS;
+	return (EXIT_SUCCESS);
 }

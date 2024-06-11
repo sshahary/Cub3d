@@ -6,11 +6,29 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 23:24:02 by sshahary          #+#    #+#             */
-/*   Updated: 2024/06/03 17:04:27 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/11 13:01:52 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub.h"
+
+int	valid_position(t_game *data, double y, double x)
+{
+	char	**map;
+	int		gap;
+
+	gap = 7;
+	if (y / TILE <= 0 || y <= gap || y / TILE >= data->cub->map_length
+		|| x / TILE <= 0 || x <= gap || x / TILE >= data->cub->map_width)
+		return (0);
+	map = data->cub->map;
+	if (map[(int)y / TILE][((int)x - gap) / TILE] == '1'
+		|| map[(int)y / TILE][((int)x + gap) / TILE] == '1'
+		|| map[((int)y - gap) / TILE][(int)x / TILE] == '1'
+		|| map[((int)y + gap) / TILE][(int)x / TILE] == '1')
+		return (0);
+	return (1);
+}
 
 void	rotate(t_game *data, int i)
 {
@@ -45,9 +63,7 @@ void	move(t_game *data, t_point far_pos, t_point new_pos)
 	mapgridy = roundf(data->player->y + new_pos.y) / TILE;
 
 	// Check for wall collisions at the new position and adjacent positions
-	if (data->cub->map[mapgridy][mapgridx] != '1'
-		&& data->cub->map[mapgridy][(int)data->player->x / TILE] != '1'
-		&& data->cub->map[(int)data->player->y / TILE][mapgridx] != '1')
+	if (valid_position(data, newy, newx))
 	{
 		// Update player position if no collision
 		data->player->x = roundf(data->player->x + new_pos.x);
