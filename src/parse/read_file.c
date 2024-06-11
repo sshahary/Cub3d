@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:04:14 by asemsey           #+#    #+#             */
-/*   Updated: 2024/05/30 12:44:36 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/11 17:16:13 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ int	read_mapfile(char *filename, t_cub *cub)
 		return (0);
 	line = read_map(cub, line, fd);
 	trim_newlines(cub);
-	set_coordinates(cub);
+	// write(1, "error\n", 6);
 	if (line || !map_valid(cub))
 		return (0);
-	display_struct(cub);
+	set_coordinates(cub);
 	close(fd);
 	return (1);
 }
@@ -84,10 +84,12 @@ char	*read_variables(t_cub *cub, int fd)
 		if (!line)
 			return (NULL);
 		if (*line != '\n' && !is_identifier(line))
-			return (line);
+			break ;
 		get_identifier(line, cub);
 	}
-	
+	if (!cub->ea_png || !cub->no_png || !cub->so_png || !cub->we_png)
+		return (free(line), NULL);
+	return (line);
 }
 
 // count the map lines to allocate
@@ -121,7 +123,7 @@ int		map_length(char *filename)
 static void	ft_nullterminate(t_cub *cub)
 {
 	char	*str;
-	
+
 	str = cub->no_png;
 	while (str && *str && *str != '\n')
 		str++;

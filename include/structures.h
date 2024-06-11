@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cubdata.h                                          :+:      :+:    :+:   */
+/*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 13:29:32 by asemsey           #+#    #+#             */
-/*   Updated: 2024/06/03 16:41:40 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/11 16:58:57 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBDATA_H
-# define CUBDATA_H
+#ifndef STRUCTURES_H
+# define STRUCTURES_H
 
-# include "cub.h"
-
-typedef struct s_point
-{
-	double	x;//left right
-	double	y;//up down
-}	t_point;
+typedef struct s_cub t_cub;
+typedef struct s_player t_player;
+typedef struct s_ray t_ray;
+typedef struct s_texture t_texture;
 
 typedef struct s_cub
 {
@@ -37,11 +34,25 @@ typedef struct s_cub
 	int		y;
 }	t_cub;
 
-// playerdir:
-// 		0 E
-// 		1 S
-// 		2 W
-// 		3 N
+typedef struct s_player
+{
+	int		x;
+	int		y;
+	double	angle;
+	float	fovradian;
+	int		rotate;
+	int		leftright;
+	int		updown;
+}	t_player;
+
+typedef struct s_ray
+{
+	double	rayangle;
+	double	dist;
+	double	h_dist;
+	double	v_dist;
+	int		wallflag;
+}	t_ray;
 
 typedef struct s_texture
 {
@@ -51,5 +62,10 @@ typedef struct s_texture
 	mlx_texture_t	*west;
 }	t_texture;
 
+typedef struct s_point
+{
+	double	x;
+	double	y;
+}	t_point;
 
 #endif

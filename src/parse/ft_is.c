@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 11:55:15 by asemsey           #+#    #+#             */
-/*   Updated: 2024/06/03 17:07:08 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/11 17:00:13 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@ int	is_mapchar(char c);
 int	is_mapline(char *str);
 int	is_identifier(char *str);
 int	is_rgb(char *str, int iter);
-// int	ft_isspace(char c);
-
-// int	ft_isspace(char c)
-// {
-// 	return (c == ' ' || c == '\t');
-// }
 
 // "0 for an empty space, 1 for a wall, and N,S,E or W"
 int	is_mapchar(char c)
@@ -83,4 +77,16 @@ int	is_rgb(char *str, int iter)
 	if (iter >= 2 && (!*str || *str == '\n'))
 		return (1);
 	return (is_rgb(str, ++iter));
+}
+
+int	cub_filename(char *str)
+{
+	char	*tmp;
+
+	tmp = ft_strrchr(str, '.');
+	if (!tmp)
+		return (0);
+	if (ft_strncmp(tmp, ".cub", ft_strlen(tmp)))
+		return (0);
+	return (1);
 }

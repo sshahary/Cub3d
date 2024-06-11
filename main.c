@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:53:23 by sshahary          #+#    #+#             */
-/*   Updated: 2024/06/11 16:22:17 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/11 16:40:43 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		ft_error("forget to give map .cub file :(");
+	if (!cub_filename(argv[1]))
+		ft_error("not a valid .cub file");
 	cub = ft_calloc(1, sizeof(t_cub));
 	if (!read_mapfile(argv[1], cub))
 		ft_error("couldn't read map file");
