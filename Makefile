@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+         #
+#    By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 18:23:50 by sshahary          #+#    #+#              #
-#    Updated: 2024/06/03 11:43:51 by asemsey          ###   ########.fr        #
+#    Updated: 2024/06/11 17:11:29 by sshahary         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME		= cub3D
 CFLAGS		= -Wall -Wextra -Werror
 
 SRCS		= main.c src/parse/map.c src/parse/ft_is.c src/parse/read_file.c src/parse/map_check2.c\
-			src/parse/testing.c src/utils.c\
+			src/parse/testing.c src/utils.c src/walltextures.c\
 			src/raycasting.c src/raycastutilis.c src/rendering.c src/controlling.c src/keyhandling.c
 OBJS		= ${SRCS:.c=.o}
 
@@ -30,7 +30,7 @@ LIB_PATH	= ./lib
 LIB			= $(LIB_PATH)/full_libft.a
 HEADERS		= -I ./include -I $(LIBMLX)/include
 
-all: $(MLX) $(LIB) $(NAME) clean
+all: $(MLX) $(LIB) $(NAME)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)\n"

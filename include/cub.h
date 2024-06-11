@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:54:12 by sshahary          #+#    #+#             */
-/*   Updated: 2024/06/11 15:08:21 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/11 16:52:29 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,23 @@
 #define SPEED 2
 #define ROT 0.05
 
+
+typedef struct s_player t_player;
+typedef struct s_ray t_ray;
+typedef struct s_texture t_texture;  // Assuming t_texture is another struct
+typedef struct s_cub t_cub; 
+
+typedef struct s_game
+{
+	mlx_t			*mlx;
+	mlx_image_t		*img;
+	mlx_texture_t	*texture;
+	t_texture		textures;
+	t_cub			*cub;
+	t_ray			*ray;
+	t_player		*player;
+}	t_game;
+
 typedef struct s_player
 {
 	int		x;
@@ -51,16 +68,16 @@ typedef struct s_ray
 }	t_ray;
 
 // main structure
-typedef struct s_game
-{
-	mlx_t			*mlx;
-	mlx_image_t		*img;
-	mlx_texture_t	*texture;
-	t_texture		textures;
-	t_cub			*cub;
-	t_ray			*ray;
-	t_player		*player;
-}	t_game;
+// typedef struct s_game
+// {
+// 	mlx_t			*mlx;
+// 	mlx_image_t		*img;
+// 	mlx_texture_t	*texture;
+// 	t_texture		textures;
+// 	t_cub			*cub;
+// 	t_ray			*ray;
+// 	t_player		*player;
+// }	t_game;
 
 //raycasting
 
@@ -77,7 +94,7 @@ void	ray_cast(t_game *data);
 void	pixel_put(t_game *data, int x, int y, int color);
 void	draw_floor_ceiling(t_game *data, int ray, int t_pix, int b_pix);
 void	get_color(t_game *data);
-// void	draw_wall(t_game *data, int ray, int t_pix, int b_pix);
+void	draw_textured_wall(t_game *data, int ray, int tpix, int bpix);
 void	render(t_game *data, int ray);
 
 // controlling
