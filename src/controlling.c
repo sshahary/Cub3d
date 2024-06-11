@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controlling.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 23:24:02 by sshahary          #+#    #+#             */
-/*   Updated: 2024/06/11 13:01:52 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/11 14:20:55 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,9 @@ void	move(t_game *data, t_point far_pos, t_point new_pos)
 	mapgridy = roundf(data->player->y + new_pos.y) / TILE;
 
 	// Check for wall collisions at the new position and adjacent positions
-	if (valid_position(data, newy, newx))
+	if (data->cub->map[mapgridy][mapgridx] != '1'
+		&& data->cub->map[mapgridy][(int)data->player->x / TILE] != '1'
+		&& data->cub->map[(int)data->player->y / TILE][mapgridx] != '1')
 	{
 		// Update player position if no collision
 		data->player->x = roundf(data->player->x + new_pos.x);
@@ -78,13 +80,14 @@ void	move(t_game *data, t_point far_pos, t_point new_pos)
 // 	int newx;
 // 	int newy;
 
+// 	(void)far_pos;
 // 	// Calculate new player position
 // 	newx = roundf(data->player->x + new_pos.x);
 // 	newy = roundf(data->player->y + new_pos.y);
 
 // 	// Convert new position to map grid coordinates
-// 	mapgridx = roundf(data->player->x + far_pos.x) / TILE;
-// 	mapgridy = roundf(data->player->y + far_pos.y) / TILE;
+// 	mapgridx = roundf(data->player->x + new_pos.x) / TILE;
+// 	mapgridy = roundf(data->player->y + new_pos.y) / TILE;
 
 // 	// Check for wall collisions at the new position and adjacent positions
 // 	if (data->cub->map[mapgridy][mapgridx] != '1'
@@ -96,6 +99,41 @@ void	move(t_game *data, t_point far_pos, t_point new_pos)
 // 		data->player->y = roundf(data->player->y + new_pos.y);
 // 	}
 // }
+
+
+void	move(t_game *data, t_point far_pos, t_point new_pos)
+{
+	int mapgridy;
+	int mapgridx;
+	int newx;
+	int newy;
+
+	// Calculate new player position
+	newx = roundf(data->player->x + new_pos.x);
+	newy = roundf(data->player->y + new_pos.y);
+
+	// Convert new position to map grid coordinates
+	mapgridx = roundf(data->player->x + far_pos.x) / TILE;
+	mapgridy = roundf(data->player->y + far_pos.y) / TILE;
+
+	// Check for wall collisions at the new position and adjacent positions
+	// if (data->cub->map[mapgridy][mapgridx] != '1'
+	// 	&& data->cub->map[mapgridy][mapgridx - 1] != '1'
+	// 	&& data->cub->map[mapgridy - 1][mapgridx] != '1')
+	// {
+	// 	// Update player position if no collision
+	// 	data->player->x = roundf(data->player->x + new_pos.x);
+	// 	data->player->y = roundf(data->player->y + new_pos.y);
+	// }
+	if (data->cub->map[mapgridy][mapgridx] != '1' // current position
+    && data->cub->map[mapgridy][mapgridx - 1] != '1' // up
+    && data->cub->map[mapgridy -   1][mapgridx] != '1' ) // bottom-right
+{
+    // Update player position if no collision
+    data->player->x = roundf(data->player->x + new_pos.x);
+    data->player->y = roundf(data->player->y + new_pos.y);
+}
+}
 
 void	get_move(t_game *data, double *movex, double *movey, int far)
 {
