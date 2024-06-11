@@ -1,10 +1,10 @@
-NO ./texture/brick1.png
-SO ./texture/brick2.png
-WE ./texture/brick3.png
-EA ./texture/brick4.png
+NO ./texture/dentwall.png
+WE ./texture/dungeon.png
+SO ./texture/hexagons.png
+EA ./texture/techwall.png
 
-F 100,100,255
-C 10,50,50
+F 0,0,40
+C 0,0,60
 
 1111111111111111111111111
 1000000000000000000000001

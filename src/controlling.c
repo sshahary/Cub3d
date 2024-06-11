@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 23:24:02 by sshahary          #+#    #+#             */
-/*   Updated: 2024/06/11 13:01:52 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/11 13:13:55 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	valid_position(t_game *data, double y, double x)
 	char	**map;
 	int		gap;
 
-	gap = 7;
+	gap = 6;
 	if (y / TILE <= 0 || y <= gap || y / TILE >= data->cub->map_length
 		|| x / TILE <= 0 || x <= gap || x / TILE >= data->cub->map_width)
 		return (0);
