@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:04:14 by asemsey           #+#    #+#             */
-/*   Updated: 2024/06/12 10:06:41 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/12 10:44:58 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ int	read_mapfile(char *filename, t_cub *cub)
 	trim_newlines(cub);
 	if (line)
 		return (free(line), ft_error("invalid line in map", 0));
+	set_coordinates(cub);
 	if (!map_valid(cub))
 		return (0);
-	set_coordinates(cub);
 	return (1);
 }
 
