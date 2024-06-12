@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:04:14 by asemsey           #+#    #+#             */
-/*   Updated: 2024/06/12 10:44:58 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/12 10:58:30 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	read_mapfile(char *filename, t_cub *cub)
 		return (ft_error("failed to open file", 0));
 	line = read_variables(cub, fd);
 	if (!line)
-		return (ft_error("texture files and colors incomplete", 0));
+		return (ft_error("texture files and colors incorrect", 0));
 	map_len = map_length(filename);
 	if (!map_len)
 		return (free(line), ft_error("could not read map", 0));
@@ -90,7 +90,8 @@ char	*read_variables(t_cub *cub, int fd)
 		get_identifier(line, cub);
 		free(line);
 	}
-	if (!cub->ea_png || !cub->no_png || !cub->so_png || !cub->we_png)
+	if (!cub->ea_png || !cub->no_png || !cub->so_png || !cub->we_png
+		|| cub->c_rgb == -1 || cub->f_rgb == -1)
 		return (close(fd), free(line), NULL);
 	return (line);
 }

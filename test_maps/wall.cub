@@ -3,7 +3,7 @@ WE ./texture/dungeon.png
 SO ./texture/hexagons.png
 EA ./texture/techwall.png
 
-F 0,0,40
+F 0,266,40
 C 0,0,60
 
         1111111111111111111111111

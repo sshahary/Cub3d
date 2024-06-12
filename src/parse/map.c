@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 13:31:27 by asemsey           #+#    #+#             */
-/*   Updated: 2024/06/12 09:50:27 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/12 10:55:48 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ int	get_rgb(char *str)
 	while (ft_isdigit(*str))
 		str++;
 	b = ft_atoi(++str);
+	if (r > 255 || r < 0 || g > 255 || g < 0 || b > 255 || b < 0)
+		return (-1);
 	return (r << 24 | g << 16 | b << 8 | 255);
 }
 
