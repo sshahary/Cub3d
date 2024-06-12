@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 13:29:32 by asemsey           #+#    #+#             */
-/*   Updated: 2024/06/11 16:58:57 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/12 07:32:37 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ typedef struct s_player t_player;
 typedef struct s_ray t_ray;
 typedef struct s_texture t_texture;
 
+// data from parsing
 typedef struct s_cub
 {
 	char	**map;
@@ -54,6 +55,7 @@ typedef struct s_ray
 	int		wallflag;
 }	t_ray;
 
+// wall textures
 typedef struct s_texture
 {
 	mlx_texture_t	*north;

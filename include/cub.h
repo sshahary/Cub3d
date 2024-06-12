@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:54:12 by sshahary          #+#    #+#             */
-/*   Updated: 2024/06/11 17:00:02 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/12 07:31:50 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	ray_cast(t_game *data);
 void	pixel_put(t_game *data, int x, int y, int color);
 void	draw_floor_ceiling(t_game *data, int ray, int t_pix, int b_pix);
 void	get_color(t_game *data);
+void	draw_textured_wall(t_game *data, int ray, int tpix, int bpix);
 void	render(t_game *data, int ray);
 
 // controlling
