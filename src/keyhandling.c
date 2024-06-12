@@ -3,31 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   keyhandling.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 00:46:51 by sshahary          #+#    #+#             */
-/*   Updated: 2024/06/11 17:00:40 by sshahary         ###   ########.fr       */
+/*   Updated: 2024/06/12 10:20:51 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub.h"
 
-void	ft_free(t_game *data)
+void	ft_free(t_game *data, int flag)
 {
 	int	i;
 
 	i = 0;
-	while (data->cub->map[i])
-		free(data->cub->map[i++]);
-	free(data->cub->map);
+	ft_arrfree(data->cub->map);
+	free(data->cub->ea_png);
+	free(data->cub->we_png);
+	free(data->cub->no_png);
+	free(data->cub->so_png);
 	free(data->cub);
-	free(data->player);
-	free(data->ray);
+	if (!flag)
+		return ;
 	mlx_delete_image(data->mlx, data->img);
 	mlx_close_window(data->mlx);
 	mlx_terminate(data->mlx);
 	printf("Game closed\n");
-	exit(0);
+	exit (EXIT_SUCCESS);
 }
 
 void	release(t_game *data, mlx_key_data_t keydata)
@@ -53,7 +55,7 @@ void	key(mlx_key_data_t keydata, void *param)
 	data = param;
 	if (keydata.key == MLX_KEY_ESCAPE && (keydata.action == MLX_PRESS
 			|| keydata.action == MLX_REPEAT))
-		ft_free(data);
+		ft_free(data, 1);
 	else if (keydata.key == MLX_KEY_A && (keydata.action == MLX_PRESS))
 		data->player->leftright = -1;
 	else if (keydata.key == MLX_KEY_D && (keydata.action == MLX_PRESS))
@@ -67,11 +69,4 @@ void	key(mlx_key_data_t keydata, void *param)
 	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
 		data->player->rotate = 1;
 	release(data, keydata);
-}
-
-void	ft_error(char *str)
-{
-	ft_putendl_fd("Error", 2);
-	ft_putendl_fd(str, 2);
-	exit(EXIT_FAILURE);
 }

@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 13:31:27 by asemsey           #+#    #+#             */
-/*   Updated: 2024/06/03 14:54:38 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/12 09:50:27 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,26 +91,52 @@ int	get_rgb(char *str)
 void	get_identifier(char *line, t_cub *cub)
 {
 	char	*filename;
-	
+
 	if (ft_strlen(line) < 3)
 		return ;
 	filename = line + 2;
 	while (*filename && *filename == ' ')
 		filename++;
-	if (!*filename)
+	if (!*filename || *filename == '\n')
 		return ;
 	if (!ft_strncmp(line, "NO ", 3))
-		cub->no_png = filename;
+		cub->no_png = ft_strdup(filename);
 	else if (!ft_strncmp(line, "SO ", 3))
-		cub->so_png = filename;
+		cub->so_png = ft_strdup(filename);
 	else if (!ft_strncmp(line, "EA ", 3))
-		cub->ea_png = filename;
+		cub->ea_png = ft_strdup(filename);
 	else if (!ft_strncmp(line, "WE ", 3))
-		cub->we_png = filename;
+		cub->we_png = ft_strdup(filename);
 	else if (!ft_strncmp(line, "F ", 2))
 		cub->f_rgb = get_rgb(filename);
 	else if (!ft_strncmp(line, "C ", 2))
 		cub->c_rgb = get_rgb(filename);
 }
 
+// count the map lines to allocate
+int	map_length(char *filename)
+{
+	int		fd;
+	int		in_map;
+	int		count;
+	char	*line;
 
+	fd = open(filename, O_RDONLY);
+	count = 0;
+	in_map = 0;
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			return (close(fd), count);
+		if (!in_map && (!is_identifier(line) && *line != '\n'))
+			in_map = 1;
+		if (in_map && (!is_mapline(line)))
+			break ;
+		free(line);
+		if (in_map)
+			count++;
+	}
+	free(line);
+	return (close(fd), count);
+}

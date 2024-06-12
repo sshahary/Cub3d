@@ -6,30 +6,31 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:53:23 by sshahary          #+#    #+#             */
-/*   Updated: 2024/06/12 07:32:46 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/12 10:23:17 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/cub.h"
 
-void	init(t_game game_data)
+int	init(t_game *data)
 {
-	game_data.player->x = game_data.cub->x * TILE + TILE / 2;
-	game_data.player->y = game_data.cub->y * TILE + TILE / 2;
-	game_data.player->fovradian = FOV * M_PI / 180;
-	game_data.player->angle = M_PI;
-}
-
-void	load_textures(t_game *data)
-{
-	data->textures.north = mlx_load_png(data->cub->no_png);
-	data->textures.south = mlx_load_png(data->cub->so_png);
-	data->textures.east = mlx_load_png(data->cub->we_png);
-	data->textures.west = mlx_load_png(data->cub->ea_png);
+	data->player->x = data->cub->x * TILE + TILE / 2;
+	data->player->y = data->cub->y * TILE + TILE / 2;
 	data->player->angle = data->cub->player_dir * M_PI / 2;
-	if (!data->textures.north || !data->textures.south
-		|| !data->textures.east || !data->textures.west)
-		ft_error("Failed to load textures");
+	data->player->fovradian = FOV * M_PI / 180;
+	data->textures.north = mlx_load_png(data->cub->no_png);
+	if (!data->textures.north)
+		return (ft_error("Failed to load textures", 0));
+	data->textures.south = mlx_load_png(data->cub->so_png);
+	if (!data->textures.north)
+		return (ft_error("Failed to load textures", 0));
+	data->textures.east = mlx_load_png(data->cub->we_png);
+	if (!data->textures.north)
+		return (ft_error("Failed to load textures", 0));
+	data->textures.west = mlx_load_png(data->cub->ea_png);
+	if (!data->textures.north)
+		return (ft_error("Failed to load textures", 0));
+	return (1);
 }
 
 void	loop_hook(void *param)
@@ -44,37 +45,43 @@ void	loop_hook(void *param)
 	mlx_image_to_window(data->mlx, data->img, 0, 0);
 }
 
-void	clear_stuff(t_game game_data)
+int	clear_mlx(t_game game_data)
 {
-	mlx_delete_image(game_data.mlx, game_data.img);
-	mlx_delete_texture(game_data.textures.north);
-	mlx_delete_texture(game_data.textures.south);
-	mlx_delete_texture(game_data.textures.east);
-	mlx_delete_texture(game_data.textures.west);
-	mlx_terminate(game_data.mlx);
+	if (game_data.mlx && game_data.img)
+		mlx_delete_image(game_data.mlx, game_data.img);
+	if (game_data.textures.north)
+		mlx_delete_texture(game_data.textures.north);
+	if (game_data.textures.south)
+		mlx_delete_texture(game_data.textures.south);
+	if (game_data.textures.east)
+		mlx_delete_texture(game_data.textures.east);
+	if (game_data.textures.west)
+		mlx_delete_texture(game_data.textures.west);
+	if (game_data.mlx)
+		mlx_terminate(game_data.mlx);
+	ft_free(&game_data, 0);
+	return (1);
 }
 
 int	main(int argc, char **argv)
 {
 	t_game	game_data;
-	t_cub	*cub;
 
 	if (argc != 2)
-		ft_error("forget to give map .cub file :(");
+		return (ft_error("run with: ./cub3D mapfile.cub", EXIT_FAILURE));
 	if (!cub_filename(argv[1]))
-		ft_error("not a valid .cub file");
-	cub = ft_calloc(1, sizeof(t_cub));
-	if (!read_mapfile(argv[1], cub))
-		ft_error("couldn't read map file");
-	game_data.cub = cub;
+		return (ft_error("not a valid .cub file", EXIT_FAILURE));
+	game_data.cub = ft_calloc(1, sizeof(t_cub));
+	if (!read_mapfile(argv[1], game_data.cub))
+		return (ft_free(&game_data, 0), EXIT_FAILURE);
 	game_data.player = ft_calloc(1, sizeof(t_player));
+	if (!init(&game_data))
+		return (free(game_data.player), clear_mlx(game_data));
 	game_data.ray = ft_calloc(1, sizeof(t_ray));
 	game_data.mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3d", 0);
-	init(game_data);
-	load_textures(&game_data);
 	mlx_loop_hook(game_data.mlx, &loop_hook, &game_data);
 	mlx_key_hook(game_data.mlx, &key, &game_data);
 	mlx_loop(game_data.mlx);
-	clear_stuff(game_data);
+	clear_mlx(game_data);
 	return (EXIT_SUCCESS);
 }

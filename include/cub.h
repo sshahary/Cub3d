@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 13:54:12 by sshahary          #+#    #+#             */
-/*   Updated: 2024/06/12 07:31:50 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/12 09:54:24 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "structures.h"
 
-#define SCREEN_WIDTH 1200
-#define SCREEN_HEIGHT 980
-#define TILE 32
-#define FOV 60
-#define SPEED 2
-#define ROT 0.05
+# define SCREEN_WIDTH 1200
+# define SCREEN_HEIGHT 980
+# define TILE 32
+# define FOV 60
+# define SPEED 2
+# define ROT 0.05
 
 // main structure
 typedef struct s_game
@@ -42,31 +42,24 @@ typedef struct s_game
 	t_texture		textures;
 }	t_game;
 
-//raycasting
+// raycasting
 
 int		check_circle(float angle, char c);
 int		check_intersect(float angle, float *inter, float *step, int horiflag);
 int		wall_hit(float x, float y, t_game *data);
 float	nor_angle(float angle);
-float	find_h_intersect(t_game *data, float angle);
-float	find_v_intersect(t_game *data, float angle);
 void	ray_cast(t_game *data);
 
-//rendering
+// rendering
 
-void	pixel_put(t_game *data, int x, int y, int color);
-void	draw_floor_ceiling(t_game *data, int ray, int t_pix, int b_pix);
 void	get_color(t_game *data);
 void	draw_textured_wall(t_game *data, int ray, int tpix, int bpix);
 void	render(t_game *data, int ray);
 
 // controlling
 
-void 	key(mlx_key_data_t keydata, void *param);
-void	release(t_game *data, mlx_key_data_t keydata);
-void	move(t_game *data, t_point far_pos, t_point new_pos);
-void	rotate(t_game *data, int i);
 void	control(t_game *data);
+void	key(mlx_key_data_t keydata, void *param);
 
 // parse
 
@@ -80,15 +73,13 @@ int		is_rgb(char *str, int iter);
 int		map_valid(t_cub *cub);
 int		cub_filename(char *str);
 
-int		ft_arrlen(char **arr);
+void	ft_free(t_game *data, int flag);
 void	ft_arrfree(char **arr);
-char	**ft_arrdup(char **arr);
+int		ft_error(char *str, int exit);
 
 // testing
 
 void	print_map(char **map, int map_width);
 void	display_struct(t_cub *cub);
-void	ft_free(t_game *data);
-void	ft_error(char *str);
 
 #endif

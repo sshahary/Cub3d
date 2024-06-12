@@ -6,7 +6,7 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:04:14 by asemsey           #+#    #+#             */
-/*   Updated: 2024/06/11 17:16:13 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/12 10:06:41 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,24 @@ int	read_mapfile(char *filename, t_cub *cub)
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		return (0);
+		return (ft_error("failed to open file", 0));
 	line = read_variables(cub, fd);
 	if (!line)
-		return (0);
+		return (ft_error("texture files and colors incomplete", 0));
 	map_len = map_length(filename);
 	if (!map_len)
-		return (0);
+		return (free(line), ft_error("could not read map", 0));
 	cub->map = (char **)malloc(sizeof(char *) * (map_len + 1));
 	if (!cub->map)
-		return (0);
+		return (free(line), ft_error("failed to allocate memory", 0));
 	line = read_map(cub, line, fd);
+	close(fd);
 	trim_newlines(cub);
-	// write(1, "error\n", 6);
-	if (line || !map_valid(cub))
+	if (line)
+		return (free(line), ft_error("invalid line in map", 0));
+	if (!map_valid(cub))
 		return (0);
 	set_coordinates(cub);
-	close(fd);
 	return (1);
 }
 
@@ -71,6 +72,7 @@ char	*read_map(t_cub *cub, char *last_line, int fd)
 		}
 		cub->map[i++] = line;
 	}
+	return (NULL);
 }
 
 // read the colors and texture files out of the file
@@ -82,42 +84,15 @@ char	*read_variables(t_cub *cub, int fd)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			return (NULL);
+			return (close(fd), NULL);
 		if (*line != '\n' && !is_identifier(line))
 			break ;
 		get_identifier(line, cub);
+		free(line);
 	}
 	if (!cub->ea_png || !cub->no_png || !cub->so_png || !cub->we_png)
-		return (free(line), NULL);
+		return (close(fd), free(line), NULL);
 	return (line);
-}
-
-// count the map lines to allocate
-int		map_length(char *filename)
-{
-	int		fd;
-	int		in_map;
-	int		count;
-	char	*line = NULL;
-
-	fd = open(filename, O_RDONLY);
-	count = 0;
-	in_map = 0;
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (!line)
-			return (close(fd), count);
-		if (!in_map && (!is_identifier(line) && *line != '\n'))
-			in_map = 1;
-		if (in_map && (!is_mapline(line)))
-			break;
-		free(line);
-		if (in_map)
-			count++;
-	}
-	free(line);
-	return (close(fd), count);
 }
 
 static void	ft_nullterminate(t_cub *cub)

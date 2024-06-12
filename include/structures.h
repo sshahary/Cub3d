@@ -6,17 +6,17 @@
 /*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 13:29:32 by asemsey           #+#    #+#             */
-/*   Updated: 2024/06/12 07:32:37 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/12 09:38:31 by asemsey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
 
-typedef struct s_cub t_cub;
-typedef struct s_player t_player;
-typedef struct s_ray t_ray;
-typedef struct s_texture t_texture;
+typedef struct s_cub		t_cub;
+typedef struct s_player		t_player;
+typedef struct s_ray		t_ray;
+typedef struct s_texture	t_texture;
 
 // data from parsing
 typedef struct s_cub
