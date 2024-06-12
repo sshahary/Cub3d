@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asemsey <asemsey@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sshahary <sshahary@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:53:23 by sshahary          #+#    #+#             */
-/*   Updated: 2024/06/12 10:23:17 by asemsey          ###   ########.fr       */
+/*   Updated: 2024/06/12 11:03:08 by sshahary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ int	init(t_game *data)
 	if (!data->textures.north)
 		return (ft_error("Failed to load textures", 0));
 	data->textures.south = mlx_load_png(data->cub->so_png);
-	if (!data->textures.north)
+	if (!data->textures.south)
 		return (ft_error("Failed to load textures", 0));
 	data->textures.east = mlx_load_png(data->cub->we_png);
-	if (!data->textures.north)
+	if (!data->textures.east)
 		return (ft_error("Failed to load textures", 0));
 	data->textures.west = mlx_load_png(data->cub->ea_png);
-	if (!data->textures.north)
+	if (!data->textures.west)
 		return (ft_error("Failed to load textures", 0));
 	return (1);
 }
