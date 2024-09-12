@@ -51,10 +51,10 @@ Map files define the layout of the game world in 2D. The map consists of differe
 Instead of directly providing text-based map examples, you can visualize how the map layout works with these images:
 
 #### Basic Map Layout:
-![Basic Map Layout](test_maps/Screenshot 2024-09-12 at 16.37.54.png)
+![ROCKY](image.png)
 
 #### Advanced Map Layout:
-![Advanced Map Layout](test_maps/Screenshot 2024-09-12 at 16.40.55.png)
+![NEON](image1.png)
 
 Each character in the map corresponds to different elements in the game:
 - `1`: Wall
