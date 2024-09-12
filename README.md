@@ -51,10 +51,10 @@ Map files define the layout of the game world in 2D. The map consists of differe
 Instead of directly providing text-based map examples, you can visualize how the map layout works with these images:
 
 #### Basic Map Layout:
-![Basic Map Layout](path-to-your-basic-map-image.png)
+![Basic Map Layout](test_maps/Screenshot 2024-09-12 at 16.37.54.png)
 
 #### Advanced Map Layout:
-![Advanced Map Layout](path-to-your-advanced-map-image.png)
+![Advanced Map Layout](test_maps/Screenshot 2024-09-12 at 16.40.55.png)
 
 Each character in the map corresponds to different elements in the game:
 - `1`: Wall
@@ -70,7 +70,7 @@ Each character in the map corresponds to different elements in the game:
 
 ## Customization
 
-You can customize various aspects of the game by editing the map files or modifying the textures and colors used for walls, floor, and ceiling. Textures should be in `.xpm` format and stored in the appropriate directory.
+You can customize various aspects of the game by editing the map files or modifying the textures and colors used for walls, floor, and ceiling. Textures should be in `.png` format and stored in the appropriate directory.
 
 ## Testing
 
