@@ -50,10 +50,10 @@ Map files define the layout of the game world in 2D. The map consists of differe
 
 Instead of directly providing text-based map examples, you can visualize how the map layout works with these images:
 
-#### Basic Map Layout:
+#### ROCKY Layout:
 ![ROCKY](image.png)
 
-#### Advanced Map Layout:
+#### NEON Layout:
 ![NEON](image1.png)
 
 Each character in the map corresponds to different elements in the game:
